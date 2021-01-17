@@ -26,6 +26,7 @@ defmodule HomeDisplay.Application do
       # Children that only run on the host
       # Starts a worker by calling: HomeDisplay.Worker.start_link(arg)
       # {HomeDisplay.Worker, arg},
+      {HomeDisplay.Display, nil}
     ]
   end
 
