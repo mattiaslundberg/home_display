@@ -9,11 +9,12 @@ defmodule HomeDisplay.Application do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: HomeDisplay.Supervisor]
+    main_viewport_config = Application.get_env(:home_display, :viewport)
 
     children =
       [
         # Children for all targets
-        {HomeDisplay.Display, []}
+        {Scenic, viewports: [main_viewport_config]}
       ] ++ children(target())
 
     Supervisor.start_link(children, opts)

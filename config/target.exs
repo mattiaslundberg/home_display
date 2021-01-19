@@ -106,6 +106,25 @@ config :mdns_lite,
     }
   ]
 
+config :home_display, :viewport, %{
+  name: :main_viewport,
+  default_scene: {HomeDisplay.Scene.Main, nil},
+  size: {212, 104},
+  opts: [scale: 1.0],
+  drivers: [
+    %{
+      module: ScenicDriverInky,
+      opts: [
+        type: :phat,
+        accent: :red,
+        opts: %{
+          border: :black
+        }
+      ]
+    }
+  ]
+}
+
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 # Uncomment to use target specific configurations
