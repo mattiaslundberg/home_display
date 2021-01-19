@@ -13,29 +13,18 @@ defmodule HomeDisplay.Application do
     children =
       [
         # Children for all targets
-        # Starts a worker by calling: HomeDisplay.Worker.start_link(arg)
-        # {HomeDisplay.Worker, arg},
+        {HomeDisplay.Display, []}
       ] ++ children(target())
 
     Supervisor.start_link(children, opts)
   end
 
-  # List all child processes to be supervised
   def children(:host) do
-    [
-      # Children that only run on the host
-      # Starts a worker by calling: HomeDisplay.Worker.start_link(arg)
-      # {HomeDisplay.Worker, arg},
-      {HomeDisplay.Display, []}
-    ]
+    []
   end
 
   def children(_target) do
-    [
-      # Children for all targets except host
-      # Starts a worker by calling: HomeDisplay.Worker.start_link(arg)
-      # {HomeDisplay.Worker, arg},
-    ]
+    []
   end
 
   def target() do
