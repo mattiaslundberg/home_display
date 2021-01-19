@@ -14,33 +14,21 @@ defmodule HomeDisplay.Display do
 
     send(self(), :redraw)
 
-    {:ok, %{inky_pid: pid, count: 1}}
+    {:ok, %{inky_pid: pid, count: 20}}
   end
 
   @impl GenServer
   def handle_info(:redraw, %{inky_pid: pid, count: count} = state) do
-    count = rem(count, 2)
+    :ok =
+      Inky.set_pixels(pid, fn x, y, _width, _height, _current ->
+        if y == count do
+          :black
+        else
+          :white
+        end
+      end)
 
-    Inky.set_pixels(pid, fn x, y, _width, _height, _current ->
-      x_odd = rem(x, 2) != 0
-      y_odd = rem(y, 2) != 0
-
-      case x_odd do
-        true ->
-          case y_odd do
-            true -> if count == 1, do: :black, else: :accent
-            false -> :accent
-          end
-
-        false ->
-          case y_odd do
-            true -> if count != 1, do: :black, else: :accent
-            false -> :white
-          end
-      end
-    end)
-
-    Process.send_after(self(), :redraw, 1000)
+    Process.send_after(self(), :redraw, 10000)
 
     {:noreply, %{state | count: count + 1}}
   end
