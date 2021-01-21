@@ -1,7 +1,6 @@
 defmodule HomeDisplay.WeatherPoller do
   use GenServer
-
-  alias Nerves.Utils.HTTPClient
+  require Logger
 
   @one_hour 3_600_000
 
@@ -11,20 +10,17 @@ defmodule HomeDisplay.WeatherPoller do
 
   @impl GenServer
   def init(%{location: location}) do
-    {:ok, client_pid} = HTTPClient.start_link()
-
     send(self(), :check)
 
-    {:ok, %{location: location, client_pid: client_pid, last_temp: ""}}
+    {:ok, %{location: location, last_temp: ""}}
   end
 
   @impl GenServer
-  def handle_info(:check, state = %{location: location, client_pid: client_pid}) do
+  def handle_info(:check, state = %{location: location}) do
     Process.send_after(self(), :check, @one_hour)
 
     new_value =
-      HTTPClient.get(
-        client_pid,
+      Tesla.get(
         "https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/#{location}/period/latest-day/data.json"
       )
       |> handle_response()
@@ -35,7 +31,8 @@ defmodule HomeDisplay.WeatherPoller do
   end
 
   @impl GenServer
-  def handle_cast({:new_temp, new_temp}, state = %{last_temp: last_temp}) do
+  def handle_cast({:new_temp, new_temp}, state = %{last_temp: last_temp})
+      when is_binary(new_temp) do
     if new_temp != last_temp do
       HomeDisplay.Scene.Main.update_temp(new_temp)
       {:noreply, %{state | last_temp: new_temp}}
@@ -44,16 +41,20 @@ defmodule HomeDisplay.WeatherPoller do
     end
   end
 
-  defp handle_response({:ok, raw_response}) do
-    raw_response |> Jason.decode!() |> Map.get("value", []) |> latest_value()
+  def handle_cast({:new_temp, _}, state) do
+    {:noreply, state}
   end
 
-  defp handle_response(_), do: nil
+  defp handle_response({:ok, %{body: body}}) do
+    body |> Jason.decode!() |> Map.get("value", []) |> latest_value()
+  end
+
+  defp handle_response(_), do: "N/A"
 
   defp latest_value(values) do
     values
     |> Enum.sort(fn a, b -> Map.get(a, "date") > Map.get(b, "date") end)
-    |> hd()
+    |> List.first()
     |> Map.get("value")
   end
 end
