@@ -10,11 +10,13 @@ defmodule HomeDisplay.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: HomeDisplay.Supervisor]
     main_viewport_config = Application.get_env(:home_display, :viewport)
+    location = Application.get_env(:home_display, :location, "98210")
 
     children =
       [
         # Children for all targets
-        {Scenic, viewports: [main_viewport_config]}
+        {Scenic, viewports: [main_viewport_config]},
+        {HomeDisplay.WeatherPoller, location: location}
       ] ++ children(target())
 
     Supervisor.start_link(children, opts)

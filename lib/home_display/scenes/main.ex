@@ -9,13 +9,13 @@ defmodule HomeDisplay.Scene.Main do
 
   def init(_, _) do
     graph =
-      Graph.build(font_size: @font_size, font: @font, theme: :light)
-      |> rectangle({212, 32}, fill: :red)
-      |> rectangle({212, 64}, t: {0, 32}, fill: :white)
-      |> rectangle({212, 8}, t: {0, 32 + 64}, fill: :red)
-      |> do_aligned_text("HELLO", :white, @font_size + 6, 212, 20)
-      |> do_aligned_text("my name is", :white, @font_size - 8, 212, 28)
-      |> do_aligned_text("Inky", :black, @font_size + 32, 212, 80)
+      Graph.build(font_size: @font_size, font: @font, theme: :light, id: :main_graph)
+      |> text("Outside: XX",
+        font_size: @font_size,
+        fill: :black,
+        translate: {0, 20},
+        id: :temp
+      )
 
     state = %{
       graph: graph
@@ -24,12 +24,20 @@ defmodule HomeDisplay.Scene.Main do
     {:ok, state, push: graph}
   end
 
-  defp do_aligned_text(graph, text, fill, font_size, width, vpos) do
-    text(graph, text,
-      font_size: font_size,
-      fill: fill,
-      translate: {width / 2, vpos},
-      text_align: :center
-    )
+  def update_temp(new_temp) do
+    Scenic.Scene.cast(get_ref(), {:new_temp, new_temp})
+  end
+
+  def handle_cast({:new_temp, new_temp}, state = %{graph: graph}) do
+    graph =
+      graph
+      |> Graph.modify(:temp, &text(&1, "Outside: #{new_temp}", []))
+
+    {:noreply, state, push: graph}
+  end
+
+  defp get_ref() do
+    {:ok, %{root_graph: {_, ref, _}}} = Scenic.ViewPort.info(:main_viewport)
+    ref
   end
 end

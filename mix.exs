@@ -37,6 +37,7 @@ defmodule HomeDisplay.MixProject do
       {:toolshed, "~> 0.2.13"},
       {:inky, "~> 1.0"},
       {:scenic, "~> 0.10"},
+      {:jason, "~> 1.2"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.11.3", targets: @all_targets},
