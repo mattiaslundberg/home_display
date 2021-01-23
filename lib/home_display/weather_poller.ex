@@ -34,7 +34,7 @@ defmodule HomeDisplay.WeatherPoller do
   def handle_cast({:new_temp, new_temp}, state = %{last_temp: last_temp})
       when is_binary(new_temp) do
     if new_temp != last_temp do
-      HomeDisplay.Scene.Main.update_temp(new_temp)
+      HomeDisplay.Scene.Main.update_out_temp(new_temp)
       {:noreply, %{state | last_temp: new_temp}}
     else
       {:noreply, state}
