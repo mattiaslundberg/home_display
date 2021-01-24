@@ -23,7 +23,7 @@ defmodule HomeDisplay.Scene.Main do
       #   translate: {0, 35},
       #   id: :in_temp
       # )
-      |> text("Event",
+      |> text("",
         font_size: @font_size,
         fill: :black,
         translate: {60, 20},

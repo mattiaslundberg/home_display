@@ -33,13 +33,14 @@ defmodule HomeDisplay.EventPoller do
     |> Task.async_stream(&get_and_parse/1)
     |> Enum.map(fn {:ok, result} -> result end)
     |> Enum.reduce([], fn a, acc -> acc ++ a end)
+    |> ExIcal.sort_by_date()
     |> List.first()
   end
 
   defp get_and_parse(url) do
     case Tesla.get(url) do
       {:ok, %{body: body}} ->
-        ExIcal.parse(body)
+        body |> ExIcal.parse() |> Enum.filter(&filter_event/1)
 
       _ ->
         []
@@ -51,5 +52,12 @@ defmodule HomeDisplay.EventPoller do
     HomeDisplay.Scene.Main.update_event(event)
 
     {:noreply, %{state | last_event: event}}
+  end
+
+  defp filter_event(event) do
+    now = Timex.now()
+    upcomming = Timex.diff(event.start, now)
+    next_week = Timex.diff(event.start, Timex.add(now, Timex.Duration.from_days(7)))
+    upcomming > 0 and next_week < 0
   end
 end
