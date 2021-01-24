@@ -39,6 +39,8 @@ defmodule HomeDisplay.MixProject do
       {:scenic, "~> 0.10"},
       {:jason, "~> 1.2"},
       {:tesla, "~> 1.4.0"},
+      {:ex_ical, "~> 0.2.0",
+       git: "git@github.com:mattiaslundberg/ex_ical.git", branch: "support-language"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.11.3", targets: @all_targets},
