@@ -30,9 +30,8 @@ defmodule HomeDisplay.EventPoller do
 
   def get_next_event(urls) do
     urls
-    |> Task.async_stream(&get_and_parse/1)
-    |> Enum.map(fn {:ok, result} -> result end)
-    |> Enum.reduce([], fn a, acc -> acc ++ a end)
+    |> Enum.map(&get_and_parse/1)
+    |> List.flatten()
     |> ExIcal.sort_by_date()
     |> List.first()
   end
@@ -40,7 +39,9 @@ defmodule HomeDisplay.EventPoller do
   defp get_and_parse(url) do
     case Tesla.get(url) do
       {:ok, %{body: body}} ->
-        body |> ExIcal.parse() |> Enum.filter(&filter_event/1)
+        body
+        |> ExIcal.parse()
+        |> Enum.filter(&filter_event/1)
 
       _ ->
         []
