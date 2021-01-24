@@ -9,7 +9,8 @@ defmodule HomeDisplay.Scene.Main do
 
   def init(_, _) do
     graph =
-      Graph.build(font_size: @font_size, font: @font, theme: :light, id: :main_graph)
+      Graph.build(font_size: @font_size, font: @font, id: :main_graph)
+      |> rectangle({212, 104}, fill: :white)
       |> text("O XX",
         font_size: @font_size,
         fill: :black,
