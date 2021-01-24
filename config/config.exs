@@ -10,6 +10,9 @@ Application.start(:nerves_bootstrap)
 
 config :home_display, target: Mix.target()
 
+config :home_display,
+  ical_urls: System.fetch_env!("HOME_DISPLAY_CALENDAR_URLS") |> String.split(",", trim: true)
+
 # Customize non-Elixir parts of the firmware. See
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.
 

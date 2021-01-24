@@ -11,13 +11,14 @@ defmodule HomeDisplay.Application do
     opts = [strategy: :one_for_one, name: HomeDisplay.Supervisor]
     main_viewport_config = Application.get_env(:home_display, :viewport)
     location = Application.get_env(:home_display, :location, "98210")
+    urls = Application.get_env(:home_display, :ical_urls, [])
 
     children =
       [
         # Children for all targets
         {Scenic, viewports: [main_viewport_config]},
         {HomeDisplay.WeatherPoller, location: location},
-        {HomeDisplay.EventPoller, urls: ["http://www.webcal.fi/cal.php?id=100"]}
+        {HomeDisplay.EventPoller, urls: urls}
       ] ++ children(target())
 
     Supervisor.start_link(children, opts)
