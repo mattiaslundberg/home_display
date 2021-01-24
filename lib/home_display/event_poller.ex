@@ -56,8 +56,8 @@ defmodule HomeDisplay.EventPoller do
 
   defp filter_event(event) do
     now = Timex.now()
-    upcomming = Timex.diff(event.start, now)
-    next_week = Timex.diff(event.start, Timex.add(now, Timex.Duration.from_days(7)))
-    upcomming > 0 and next_week < 0
+    upcomming = Timex.diff(event.start, now) > 0
+    next_week = Timex.diff(event.start, Timex.add(now, Timex.Duration.from_days(7))) < 0
+    upcomming and next_week
   end
 end
