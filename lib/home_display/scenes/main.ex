@@ -40,12 +40,24 @@ defmodule HomeDisplay.Scene.Main do
     Scenic.Scene.cast(get_ref(), {:new_out_temp, new_temp})
   end
 
+  def update_event(event) do
+    Scenic.Scene.cast(get_ref(), {:new_event, event})
+  end
+
   def handle_cast({:new_out_temp, new_temp}, state = %{graph: graph}) do
     graph =
       graph
       |> Graph.modify(:out_temp, &text(&1, "O #{new_temp}", []))
 
-    {:noreply, state, push: graph}
+    {:noreply, %{state | graph: graph}, push: graph}
+  end
+
+  def handle_cast({:new_event, event}, state = %{graph: graph}) do
+    graph =
+      graph
+      |> Graph.modify(:event, &text(&1, event.summary, []))
+
+    {:noreply, %{state | graph: graph}, push: graph}
   end
 
   defp get_ref() do

@@ -16,7 +16,8 @@ defmodule HomeDisplay.Application do
       [
         # Children for all targets
         {Scenic, viewports: [main_viewport_config]},
-        {HomeDisplay.WeatherPoller, location: location}
+        {HomeDisplay.WeatherPoller, location: location},
+        {HomeDisplay.EventPoller, urls: ["http://www.webcal.fi/cal.php?id=100"]}
       ] ++ children(target())
 
     Supervisor.start_link(children, opts)
