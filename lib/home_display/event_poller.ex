@@ -42,7 +42,7 @@ defmodule HomeDisplay.EventPoller do
         ExIcal.parse(body)
 
       _ ->
-        nil
+        []
     end
   end
 
