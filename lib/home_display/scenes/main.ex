@@ -53,13 +53,15 @@ defmodule HomeDisplay.Scene.Main do
     {:noreply, %{state | graph: graph}, push: graph}
   end
 
-  def handle_cast({:new_event, event}, state = %{graph: graph}) do
+  def handle_cast({:new_event, %{summary: summary}}, state = %{graph: graph}) do
     graph =
       graph
-      |> Graph.modify(:event, &text(&1, event.summary, []))
+      |> Graph.modify(:event, &text(&1, summary, []))
 
     {:noreply, %{state | graph: graph}, push: graph}
   end
+
+  def handle_cast({:new_event, _}, state), do: {:noreply, state}
 
   defp get_ref() do
     {:ok, %{root_graph: {_, ref, _}}} = Scenic.ViewPort.info(:main_viewport)

@@ -47,13 +47,9 @@ defmodule HomeDisplay.EventPoller do
   end
 
   @impl GenServer
-  def handle_cast({:next_event, event}, state = %{last_event: last_event}) do
-    if is_map(last_event) and event.uid == Map.get(last_event, :uid, "undefined") do
-      {:noreply, state}
-    else
-      HomeDisplay.Scene.Main.update_event(event)
+  def handle_cast({:next_event, event}, state) do
+    HomeDisplay.Scene.Main.update_event(event)
 
-      {:noreply, %{state | last_event: event}}
-    end
+    {:noreply, %{state | last_event: event}}
   end
 end
