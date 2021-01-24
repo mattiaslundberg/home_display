@@ -2,7 +2,7 @@ defmodule HomeDisplay.EventPoller do
   use GenServer
   require Logger
 
-  # @wait_between 2000
+  @wait_between 800_000
 
   def start_link(urls: calendar_urls) do
     GenServer.start_link(__MODULE__, calendar_urls)
@@ -17,6 +17,8 @@ defmodule HomeDisplay.EventPoller do
 
   @impl GenServer
   def handle_info(:check, state) do
+    Process.send_after(self(), :check, @wait_between)
+
     next_event =
       state.calendar_urls
       |> get_next_event()
