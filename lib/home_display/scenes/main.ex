@@ -17,17 +17,23 @@ defmodule HomeDisplay.Scene.Main do
         translate: {0, 20},
         id: :out_temp
       )
-      |> text("I XX",
-        font_size: @font_size,
-        fill: :black,
-        translate: {0, 35},
-        id: :in_temp
-      )
+      # |> text("I XX",
+      #   font_size: @font_size,
+      #   fill: :black,
+      #   translate: {0, 35},
+      #   id: :in_temp
+      # )
       |> text("Event",
         font_size: @font_size,
         fill: :black,
         translate: {60, 20},
         id: :event
+      )
+      |> text("",
+        font_size: @font_size,
+        fill: :black,
+        translate: {60, 35},
+        id: :event_time
       )
 
     state = %{
@@ -53,10 +59,14 @@ defmodule HomeDisplay.Scene.Main do
     {:noreply, %{state | graph: graph}, push: graph}
   end
 
-  def handle_cast({:new_event, %{summary: summary}}, state = %{graph: graph}) do
+  def handle_cast({:new_event, event}, state = %{graph: graph}) when is_map(event) do
     graph =
       graph
-      |> Graph.modify(:event, &text(&1, summary, []))
+      |> Graph.modify(:event, &text(&1, event.summary, []))
+      |> Graph.modify(
+        :event_time,
+        &text(&1, event.start |> Timex.format!("{D}/{M} {h24}:{m}"), [])
+      )
 
     {:noreply, %{state | graph: graph}, push: graph}
   end
