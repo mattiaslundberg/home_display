@@ -49,12 +49,9 @@ defmodule HomeDisplay.EventPoller do
   end
 
   @impl GenServer
-  def handle_cast({:next_event, event = %{summary: summary, start: start}}, state) do
-    pretty_start =
-      start |> Timex.to_datetime("Europe/Stockholm") |> Timex.format!("{D}/{M} {h24}:{m}")
-
+  def handle_cast({:next_event, event = %{summary: summary}}, state) do
     HomeDisplay.Scene.Main.update_graph({:event, summary})
-    HomeDisplay.Scene.Main.update_graph({:event_time, pretty_start})
+    HomeDisplay.Scene.Main.update_graph({:event_time, pretty_start(event)})
 
     {:noreply, %{state | last_event: event}}
   end
@@ -62,6 +59,18 @@ defmodule HomeDisplay.EventPoller do
   def handle_cast(_, state) do
     Logger.info("Failed to update with event")
     {:noreply, state}
+  end
+
+  defp pretty_start(%{start: start}) do
+    if Timex.equal?(start, Timex.beginning_of_day(start)) do
+      start
+      |> Timex.to_datetime("Europe/Stockholm")
+      |> Timex.format!("{D}/{M}")
+    else
+      start
+      |> Timex.to_datetime("Europe/Stockholm")
+      |> Timex.format!("{D}/{M} {h24}:{m}")
+    end
   end
 
   defp filter_event(event) do
