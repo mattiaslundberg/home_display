@@ -60,6 +60,7 @@ defmodule HomeDisplay.EventPoller do
   end
 
   def handle_cast(_, state) do
+    Logger.info("Failed to update with event")
     {:noreply, state}
   end
 
