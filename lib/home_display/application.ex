@@ -19,6 +19,7 @@ defmodule HomeDisplay.Application do
         {Scenic, viewports: [main_viewport_config]},
         {HomeDisplay.WeatherPoller, location: location},
         {HomeDisplay.DatePoller, []},
+        {HomeDisplay.KrisinformationPoller, []},
         {HomeDisplay.EventPoller, urls: urls}
       ] ++ children(target())
 

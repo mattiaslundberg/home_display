@@ -43,6 +43,12 @@ defmodule HomeDisplay.Scene.Main do
         translate: {60, 30},
         id: :event_time
       )
+      |> text("",
+        font_size: @font_size - 4,
+        fill: :black,
+        translate: {0, 94},
+        id: :kris
+      )
 
     state = %{
       graph: graph
@@ -61,6 +67,10 @@ defmodule HomeDisplay.Scene.Main do
 
   def update_today(date) do
     Scenic.Scene.cast(get_ref(), {:set_date, date})
+  end
+
+  def update_krisinformation(text) do
+    Scenic.Scene.cast(get_ref(), {:set_kris, text})
   end
 
   def handle_cast({:new_out_temp, new_temp}, state = %{graph: graph}) do
@@ -89,6 +99,14 @@ defmodule HomeDisplay.Scene.Main do
     graph =
       graph
       |> Graph.modify(:today, &text(&1, Timex.format!(date, "{D}/{M}"), []))
+
+    {:noreply, %{state | graph: graph}, push: graph}
+  end
+
+  def handle_cast({:set_kris, text}, state) do
+    graph =
+      state.graph
+      |> Graph.modify(:kris, &text(&1, text))
 
     {:noreply, %{state | graph: graph}, push: graph}
   end
