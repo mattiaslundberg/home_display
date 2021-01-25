@@ -11,6 +11,12 @@ defmodule HomeDisplay.Scene.Main do
     graph =
       Graph.build(font_size: @font_size, font: @font, id: :main_graph)
       |> rectangle({212, 104}, fill: :white)
+      |> text("",
+        font_size: @font_size,
+        fill: :black,
+        translate: {0, 15},
+        id: :today
+      )
       |> text("O XX",
         font_size: @font_size,
         fill: :black,
@@ -51,6 +57,10 @@ defmodule HomeDisplay.Scene.Main do
     Scenic.Scene.cast(get_ref(), {:new_event, event})
   end
 
+  def update_today(date) do
+    Scenic.Scene.cast(get_ref(), {:set_date, date})
+  end
+
   def handle_cast({:new_out_temp, new_temp}, state = %{graph: graph}) do
     graph =
       graph
@@ -72,6 +82,14 @@ defmodule HomeDisplay.Scene.Main do
   end
 
   def handle_cast({:new_event, _}, state), do: {:noreply, state}
+
+  def handle_cast({:set_date, date}, state = %{graph: graph}) do
+    graph =
+      graph
+      |> Graph.modify(:today, &text(&1, Timex.format!(date, "{D}/{M}"), []))
+
+    {:noreply, %{state | graph: graph}, push: graph}
+  end
 
   defp get_ref() do
     {:ok, %{root_graph: {_, ref, _}}} = Scenic.ViewPort.info(:main_viewport)
