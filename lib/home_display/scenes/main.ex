@@ -46,7 +46,7 @@ defmodule HomeDisplay.Scene.Main do
       |> text("",
         font_size: @font_size - 4,
         fill: :black,
-        translate: {0, 94},
+        translate: {0, 102},
         id: :kris
       )
 

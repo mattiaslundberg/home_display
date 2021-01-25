@@ -2,7 +2,7 @@ defmodule HomeDisplay.KrisinformationPoller do
   use GenServer
   require Logger
 
-  @wait_between 360_000
+  @wait_between 80_000
 
   def start_link(_) do
     GenServer.start_link(__MODULE__, nil)
