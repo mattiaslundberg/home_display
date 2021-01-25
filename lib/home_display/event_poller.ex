@@ -50,11 +50,11 @@ defmodule HomeDisplay.EventPoller do
 
   @impl GenServer
   def handle_cast({:next_event, event = %{summary: summary, start: start}}, state) do
-    HomeDisplay.Scene.Main.update_graph({:event, summary})
+    pretty_start =
+      start |> Timex.to_datetime("Europe/Stockholm") |> Timex.format!("{D}/{M} {h24}:{m}")
 
-    HomeDisplay.Scene.Main.update_graph(
-      {:event_time, start |> Timex.format!("{D}/{M} {h24}:{m}")}
-    )
+    HomeDisplay.Scene.Main.update_graph({:event, summary})
+    HomeDisplay.Scene.Main.update_graph({:event_time, pretty_start})
 
     {:noreply, %{state | last_event: event}}
   end
