@@ -20,25 +20,27 @@ defmodule HomeDisplay.Scene.Main do
       |> text("O XX",
         font_size: @font_size,
         fill: :black,
-        translate: {0, 20},
+        translate: {0, 30},
         id: :out_temp
       )
+      |> line({{0, 33}, {212, 33}}, fill: :black)
+      |> line({{59, 0}, {59, 33}}, fill: :black)
       # |> text("I XX",
       #   font_size: @font_size,
       #   fill: :black,
-      #   translate: {0, 35},
+      #   translate: {0, 50},
       #   id: :in_temp
       # )
       |> text("",
         font_size: @font_size,
         fill: :black,
-        translate: {60, 20},
+        translate: {60, 15},
         id: :event
       )
       |> text("",
         font_size: @font_size,
         fill: :black,
-        translate: {60, 35},
+        translate: {60, 30},
         id: :event_time
       )
 
