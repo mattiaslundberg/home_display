@@ -24,7 +24,7 @@ defmodule HomeDisplay.KrisinformationPoller do
       |> handle_response()
 
     title = Map.get(latest_event, "Title", "")
-    HomeDisplay.Scene.Main.update_krisinformation("#{title}")
+    HomeDisplay.Scene.Main.update_graph({:kris, "#{title}"})
     {:noreply, state}
   end
 

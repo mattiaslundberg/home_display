@@ -57,56 +57,12 @@ defmodule HomeDisplay.Scene.Main do
     {:ok, state, push: graph}
   end
 
-  def update_out_temp(new_temp) do
-    Scenic.Scene.cast(get_ref(), {:new_out_temp, new_temp})
+  def update_graph(action) when is_tuple(action) do
+    Scenic.Scene.cast(get_ref(), action)
   end
 
-  def update_event(event) do
-    Scenic.Scene.cast(get_ref(), {:new_event, event})
-  end
-
-  def update_today(date) do
-    Scenic.Scene.cast(get_ref(), {:set_date, date})
-  end
-
-  def update_krisinformation(text) do
-    Scenic.Scene.cast(get_ref(), {:set_kris, text})
-  end
-
-  def handle_cast({:new_out_temp, new_temp}, state = %{graph: graph}) do
-    graph =
-      graph
-      |> Graph.modify(:out_temp, &text(&1, "O #{new_temp}", []))
-
-    {:noreply, %{state | graph: graph}, push: graph}
-  end
-
-  def handle_cast({:new_event, event}, state = %{graph: graph}) when is_map(event) do
-    graph =
-      graph
-      |> Graph.modify(:event, &text(&1, event.summary, []))
-      |> Graph.modify(
-        :event_time,
-        &text(&1, event.start |> Timex.format!("{D}/{M} {h24}:{m}"), [])
-      )
-
-    {:noreply, %{state | graph: graph}, push: graph}
-  end
-
-  def handle_cast({:new_event, _}, state), do: {:noreply, state}
-
-  def handle_cast({:set_date, date}, state = %{graph: graph}) do
-    graph =
-      graph
-      |> Graph.modify(:today, &text(&1, Timex.format!(date, "{D}/{M}"), []))
-
-    {:noreply, %{state | graph: graph}, push: graph}
-  end
-
-  def handle_cast({:set_kris, text}, state) do
-    graph =
-      state.graph
-      |> Graph.modify(:kris, &text(&1, text))
+  def handle_cast({target, content}, state = %{graph: graph}) do
+    graph = Graph.modify(graph, target, &text(&1, content, []))
 
     {:noreply, %{state | graph: graph}, push: graph}
   end

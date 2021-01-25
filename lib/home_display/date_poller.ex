@@ -18,7 +18,8 @@ defmodule HomeDisplay.DatePoller do
   @impl GenServer
   def handle_info(:check, state) do
     Process.send_after(self(), :check, @wait_between)
-    HomeDisplay.Scene.Main.update_today(Timex.now())
+    content = Timex.format!(Timex.now(), "{D}/{M}")
+    HomeDisplay.Scene.Main.update_graph({:today, content})
     {:noreply, state}
   end
 end

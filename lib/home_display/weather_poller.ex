@@ -33,7 +33,7 @@ defmodule HomeDisplay.WeatherPoller do
   @impl GenServer
   def handle_cast({:new_temp, new_temp}, state)
       when is_binary(new_temp) do
-    HomeDisplay.Scene.Main.update_out_temp(new_temp)
+    HomeDisplay.Scene.Main.update_graph({:out_temp, "O #{new_temp}"})
     {:noreply, %{state | last_temp: new_temp}}
   end
 
