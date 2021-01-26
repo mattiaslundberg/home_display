@@ -23,6 +23,8 @@ config :nerves,
     hostname_pattern: "nerves-%s"
   ]
 
+config :nerves, :firmware, fwup_conf: "config/fwup.conf"
+
 # Configure the device for SSH IEx prompt access and firmware updates
 #
 # * See https://hexdocs.pm/nerves_ssh/readme.html for general SSH configuration
