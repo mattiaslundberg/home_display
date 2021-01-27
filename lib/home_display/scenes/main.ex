@@ -25,12 +25,12 @@ defmodule HomeDisplay.Scene.Main do
       )
       |> line({{0, 33}, {212, 33}}, fill: :black)
       |> line({{59, 0}, {59, 33}}, fill: :black)
-      # |> text("I XX",
-      #   font_size: @font_size,
-      #   fill: :black,
-      #   translate: {0, 50},
-      #   id: :in_temp
-      # )
+      |> text("I XX",
+        font_size: @font_size,
+        fill: :black,
+        translate: {0, 50},
+        id: :local_temp
+      )
       |> text("",
         font_size: @font_size,
         fill: :black,

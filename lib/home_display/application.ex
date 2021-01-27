@@ -20,6 +20,7 @@ defmodule HomeDisplay.Application do
         {HomeDisplay.WeatherPoller, location: location},
         {HomeDisplay.DatePoller, []},
         {HomeDisplay.KrisinformationPoller, []},
+        {HomeDisplay.OneWireReader, []},
         {HomeDisplay.EventPoller, urls: urls}
       ] ++ children(target())
 
