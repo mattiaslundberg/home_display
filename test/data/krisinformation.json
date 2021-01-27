@@ -1,0 +1,144 @@
+{
+  "Entries": [
+    {
+      "ID": "https://api.krisinformation.se/v1/capmessage/15501?format=xml",
+      "Updated": "2021-01-26T09:57:04+01:00",
+      "Published": "2021-01-26T09:57:00+01:00",
+      "CapEvent": "News",
+      "Author": {
+        "Name": "https://www.krisinformation.se/"
+      },
+      "Title": "Reseavrådan till länder utanför EU/EES förlängs",
+      "Link": {
+        "Id": null,
+        "LinkName": null,
+        "LinkUrl": "https://api.krisinformation.se/v1/capmessage/15501?format=xml"
+      },
+      "Summary": "Utrikesdepartementet har idag beslutat att förlänga avrådan från icke-nödvändiga resor till länder utanför EU/EES/Schengenområdet fram till och med den 15 april. ",
+      "CapArea": [
+        {
+          "CapAreaDesc": "Sverige",
+          "Coordinate": "16.596265846848,62.8114849680804 0"
+        }
+      ]
+    },
+    {
+      "ID": "https://api.krisinformation.se/v1/capmessage/15494?format=xml",
+      "Updated": "2021-01-24T14:51:56+01:00",
+      "Published": "2021-01-24T14:51:56+01:00",
+      "CapEvent": "News",
+      "Author": {
+        "Name": "https://www.krisinformation.se/"
+      },
+      "Title": "Tillfälligt inreseförbud från Norge",
+      "Link": {
+        "Id": null,
+        "LinkName": null,
+        "LinkUrl": "https://api.krisinformation.se/v1/capmessage/15494?format=xml"
+      },
+      "Summary": "Regeringen utvidgar det tillfälliga inreseförbudet från Danmark till att också gälla från Norge. Inreseförbudet träder i kraft vid midnatt natten mot måndag den 25 januari och gäller till och med den 14 februari.",
+      "CapArea": [
+        {
+          "CapAreaDesc": "Sverige",
+          "Coordinate": "16.596265846848,62.8114849680804 0"
+        }
+      ]
+    },
+    {
+      "ID": "https://api.krisinformation.se/v1/capmessage/15493?format=xml",
+      "Updated": "2021-01-23T15:58:55+01:00",
+      "Published": "2021-01-23T15:58:55+01:00",
+      "CapEvent": "News",
+      "Author": {
+        "Name": "https://www.krisinformation.se/"
+      },
+      "Title": "Resenärer från Norge uppmanas testa sig och undvika kontakt med andra",
+      "Link": {
+        "Id": null,
+        "LinkName": null,
+        "LinkUrl": "https://api.krisinformation.se/v1/capmessage/15493?format=xml"
+      },
+      "Summary": "Folkhälsomyndigheten uppmanar alla som reser in i Sverige från Norge, eller som nyligen har varit där, att testa sig för covid-19 och undvika kontakt med andra.",
+      "CapArea": [
+        {
+          "CapAreaDesc": "Sverige",
+          "Coordinate": "16.596265846848,62.8114849680804 0"
+        }
+      ]
+    },
+    {
+      "ID": "https://api.krisinformation.se/v1/capmessage/15491?format=xml",
+      "Updated": "2021-01-22T10:51:19+01:00",
+      "Published": "2021-01-22T10:51:19+01:00",
+      "CapEvent": "News",
+      "Author": {
+        "Name": "https://www.krisinformation.se/"
+      },
+      "Title": "Resenärer från Brasilien uppmanas testa sig och undvika kontakt med andra",
+      "Link": {
+        "Id": null,
+        "LinkName": null,
+        "LinkUrl": "https://api.krisinformation.se/v1/capmessage/15491?format=xml"
+      },
+      "Summary": "Folkhälsomyndigheten rekommenderar att personer som varit i Brasilien och reser in i Sverige testar sig för covid-19 samt undviker kontakt med andra.",
+      "CapArea": [
+        {
+          "CapAreaDesc": "Sverige",
+          "Coordinate": "16.596265846848,62.8114849680804 0"
+        }
+      ]
+    },
+    {
+      "ID": "https://api.krisinformation.se/v1/capmessage/15488?format=xml",
+      "Updated": "2021-01-21T12:38:21+01:00",
+      "Published": "2021-01-21T09:38:31+01:00",
+      "CapEvent": "News",
+      "Author": {
+        "Name": "https://www.krisinformation.se/"
+      },
+      "Title": "Flera restriktioner förlängs",
+      "Link": {
+        "Id": null,
+        "LinkName": null,
+        "LinkUrl": "https://api.krisinformation.se/v1/capmessage/15488?format=xml"
+      },
+      "Summary": "Följande restriktioner kommer att förlängas med anledning av spridningen av covid-19, meddelar regeringen.  ",
+      "CapArea": [
+        {
+          "CapAreaDesc": "Sverige",
+          "Coordinate": "16.596265846848,62.8114849680804 0"
+        }
+      ]
+    },
+    {
+      "ID": "https://api.krisinformation.se/v1/capmessage/15486?format=xml",
+      "Updated": "2021-01-22T14:01:20+01:00",
+      "Published": "2021-01-20T10:50:40+01:00",
+      "CapEvent": "News",
+      "Author": {
+        "Name": "https://www.krisinformation.se/"
+      },
+      "Title": "Varningar för storm och snöfall som kan ge kraftig drivbildning",
+      "Link": {
+        "Id": null,
+        "LinkName": null,
+        "LinkUrl": "https://api.krisinformation.se/v1/capmessage/15486?format=xml"
+      },
+      "Summary": "SMHI har utfärdat vädervarningar för snöfall och storm i delar av norra Sverige. Följ den senaste utvecklingen här. ",
+      "CapArea": [
+        {
+          "CapAreaDesc": "Norrbottens län",
+          "Coordinate": "20.2481178645446,66.8633839653276 0"
+        },
+        {
+          "CapAreaDesc": "Västerbottens län",
+          "Coordinate": "18.1865376130758,64.7640174021215 0"
+        },
+        {
+          "CapAreaDesc": "Västernorrlands län",
+          "Coordinate": "17.4746156872365,63.0331399333598 0"
+        }
+      ]
+    }
+  ]
+}
