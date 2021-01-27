@@ -11,24 +11,31 @@ defmodule HomeDisplay.Scene.Main do
     graph =
       Graph.build(font_size: @font_size, font: @font, id: :main_graph)
       |> rectangle({212, 104}, fill: :white)
+      |> line({{0, 33}, {212, 33}}, fill: :black)
+      |> line({{0, 88}, {212, 88}}, fill: :black)
+      |> line({{59, 0}, {59, 88}}, fill: :black)
       |> text("",
         font_size: @font_size,
         fill: :black,
         translate: {0, 15},
         id: :today
       )
-      |> text("O XX",
+      |> text("",
         font_size: @font_size,
         fill: :black,
         translate: {0, 30},
-        id: :out_temp
+        id: :day
       )
-      |> line({{0, 33}, {212, 33}}, fill: :black)
-      |> line({{59, 0}, {59, 33}}, fill: :black)
-      |> text("I XX",
+      |> text("O XX",
         font_size: @font_size,
         fill: :black,
         translate: {0, 50},
+        id: :out_temp
+      )
+      |> text("I XX",
+        font_size: @font_size,
+        fill: :black,
+        translate: {0, 70},
         id: :local_temp
       )
       |> text("",
