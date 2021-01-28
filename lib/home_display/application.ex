@@ -24,14 +24,15 @@ defmodule HomeDisplay.Application do
         {HomeDisplay.DatePoller, []},
         {HomeDisplay.KrisinformationPoller, []},
         {HomeDisplay.OneWireReader, []},
-        {HomeDisplay.EventPoller, urls: urls}
+        {HomeDisplay.EventPoller, urls: urls},
+        HomeDisplay.InfluxConnection
       ] ++ children(target())
 
     children =
-      if Mix.env() != :test do
-        children ++ non_test_children
-      else
+      if env() == :test do
         children
+      else
+        children ++ non_test_children
       end
 
     Supervisor.start_link(children, opts)

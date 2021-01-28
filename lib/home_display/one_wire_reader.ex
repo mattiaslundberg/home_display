@@ -2,6 +2,8 @@ defmodule HomeDisplay.OneWireReader do
   use GenServer
   require Logger
 
+  alias HomeDisplay.{TemperatureSeries, InfluxConnection}
+
   @wait_between 360_000
 
   def start_link(_) do
@@ -21,6 +23,11 @@ defmodule HomeDisplay.OneWireReader do
 
     case OneWire.read_sensors() do
       [temperature] ->
+        InfluxConnection.write(%TemperatureSeries{
+          fields: %TemperatureSeries.Fields{value: temperature},
+          tags: %TemperatureSeries.Tags{location: "home-display"}
+        })
+
         HomeDisplay.Scene.Main.update_graph({:local_temp, "L #{temperature}"})
 
       _ ->

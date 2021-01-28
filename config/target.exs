@@ -129,6 +129,16 @@ config :home_display, :viewport, %{
 
 config :tzdata, :data_dir, "/tmp"
 
+config :home_display, HomeDisplay.InfluxConnection,
+  database: "home",
+  host: System.fetch_env!("HOME_DISPLAY_INFLUX_HOST"),
+  port: 8086,
+  auth: [
+    method: :basic,
+    username: System.fetch_env!("HOME_DISPLAY_INFLUX_USER"),
+    password: System.fetch_env!("HOME_DISPLAY_INFLUX_PASS")
+  ]
+
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 # Uncomment to use target specific configurations
