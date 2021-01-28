@@ -13,16 +13,26 @@ defmodule HomeDisplay.Application do
     location = Application.get_env(:home_display, :location, "98210")
     urls = Application.get_env(:home_display, :ical_urls, [])
 
+    non_test_children = [
+      {Scenic, viewports: [main_viewport_config]}
+    ]
+
     children =
       [
         # Children for all targets
-        {Scenic, viewports: [main_viewport_config]},
         {HomeDisplay.WeatherPoller, location: location},
         {HomeDisplay.DatePoller, []},
         {HomeDisplay.KrisinformationPoller, []},
         {HomeDisplay.OneWireReader, []},
         {HomeDisplay.EventPoller, urls: urls}
       ] ++ children(target())
+
+    children =
+      if Mix.env() != :test do
+        children ++ non_test_children
+      else
+        children
+      end
 
     Supervisor.start_link(children, opts)
   end
