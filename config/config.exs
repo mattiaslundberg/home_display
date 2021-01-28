@@ -9,6 +9,7 @@ import Config
 Application.start(:nerves_bootstrap)
 
 config :home_display, target: Mix.target()
+config :home_display, env: Mix.env()
 
 config :home_display,
   ical_urls: System.fetch_env!("HOME_DISPLAY_CALENDAR_URLS") |> String.split(",", trim: true)
