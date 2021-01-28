@@ -1,6 +1,6 @@
 # HomeDisplay
 
-Displaying useful information on a [Inky pHAT](https://shop.pimoroni.com/products/inky-phat?variant=12549254217811) and from a raspberry pi.
+Displaying useful information on a [Inky pHAT](https://shop.pimoroni.com/products/inky-phat?variant=12549254217811) and from a raspberry pi 3.
 
 ## Targets
 
@@ -18,11 +18,14 @@ https://hexdocs.pm/nerves/targets.html#content
 
 To start your Nerves app:
 
-- `export MIX_TARGET=my_target` or prefix every command with
-  `MIX_TARGET=my_target`. For example, `MIX_TARGET=rpi3`
+- Setup PI and pHAT
+- Set `HOME_DISPLAY_WIFI_SSID`, `HOME_DISPLAY_WIFI_PSK` and `HOME_DISPLAY_CALENDAR_URLS`
+- `export MIX_TARGET=rpi3` or prefix every command with
+  `MIX_TARGET=rpi3`.
 - Install dependencies with `mix deps.get`
 - Create firmware with `mix firmware`
 - Burn to an SD card with `mix firmware.burn`
+- Update with `mix upload home-display.local`
 
 ## Learn more
 
