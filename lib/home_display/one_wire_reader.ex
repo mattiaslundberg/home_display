@@ -2,7 +2,7 @@ defmodule HomeDisplay.OneWireReader do
   use GenServer
   require Logger
 
-  @wait_between 80_000
+  @wait_between 360_000
 
   def start_link(_) do
     GenServer.start_link(__MODULE__, nil)
@@ -21,7 +21,7 @@ defmodule HomeDisplay.OneWireReader do
 
     case OneWire.read_sensors() do
       [temperature] ->
-        HomeDisplay.Scene.Main.update_graph({:local_temp, "#{temperature}"})
+        HomeDisplay.Scene.Main.update_graph({:local_temp, "L #{temperature}"})
 
       _ ->
         Logger.error("Exactly one senor required...")

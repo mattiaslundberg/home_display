@@ -32,10 +32,10 @@ defmodule HomeDisplay.Scene.Main do
         translate: {0, 50},
         id: :out_temp
       )
-      |> text("I XX",
+      |> text("L XX",
         font_size: @font_size,
         fill: :black,
-        translate: {0, 70},
+        translate: {0, 65},
         id: :local_temp
       )
       |> text("",
