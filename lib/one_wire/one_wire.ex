@@ -21,6 +21,6 @@ defmodule OneWire do
     temp
     |> String.to_integer()
     |> (fn t -> t / 1000.0 end).()
-    |> round()
+    |> Float.round(1)
   end
 end

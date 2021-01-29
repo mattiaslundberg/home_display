@@ -12,7 +12,7 @@ defmodule HomeDisplay.OneWireReader do
 
   @impl GenServer
   def init(_) do
-    Process.send_after(self(), :check, 1000)
+    Process.send_after(self(), :check, 10000)
 
     {:ok, %{}}
   end
@@ -28,7 +28,7 @@ defmodule HomeDisplay.OneWireReader do
           tags: %TemperatureSeries.Tags{location: "home-display"}
         })
 
-        HomeDisplay.Scene.Main.update_graph({:local_temp, "L #{temperature}"})
+        HomeDisplay.Scene.Main.update_graph({:local_temp, "L #{round(temperature)}"})
 
       _ ->
         Logger.error("Exactly one senor required...")
