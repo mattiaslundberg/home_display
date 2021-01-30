@@ -33,8 +33,6 @@ defmodule HomeDisplay.OneWireReader do
       tags: %TemperatureSeries.Tags{location: "home-display", sensor_id: sensor_id}
     })
 
-    if sensor_id == "28-005eeb0000af" do
-      HomeDisplay.Scene.Main.update_graph({:local_temp, "L #{round(temperature)}"})
-    end
+    HomeDisplay.Scene.Main.update_graph({:temp, sensor_id, temperature})
   end
 end

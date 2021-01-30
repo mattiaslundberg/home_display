@@ -3,6 +3,7 @@ defmodule HomeDisplay.Scene.Main do
   alias Scenic.Graph
 
   import Scenic.Primitives
+  alias HomeDisplay.Sensors
 
   @font_size 20
   @font :roboto
@@ -26,24 +27,6 @@ defmodule HomeDisplay.Scene.Main do
         translate: {0, 30},
         id: :day
       )
-      |> text("O XX",
-        font_size: @font_size,
-        fill: :black,
-        translate: {0, 50},
-        id: :out_temp
-      )
-      |> text("L XX",
-        font_size: @font_size,
-        fill: :black,
-        translate: {0, 65},
-        id: :local_temp
-      )
-      |> text("F XX",
-        font_size: @font_size,
-        fill: :black,
-        translate: {0, 80},
-        id: :freezer_temp
-      )
       |> text("",
         font_size: @font_size,
         fill: :black,
@@ -63,15 +46,35 @@ defmodule HomeDisplay.Scene.Main do
         id: :kris
       )
 
-    state = %{
-      graph: graph
-    }
+    graph =
+      Enum.reduce(Sensors.sensors(), graph, fn {_s_id, s}, g ->
+        text(g, Sensors.format_reading(s),
+          font_size: @font_size,
+          fill: :black,
+          translate: s.scene_location,
+          id: s.scene_id
+        )
+      end)
 
-    {:ok, state, push: graph}
+    {:ok, %{graph: graph}, push: graph}
   end
 
   def update_graph(action) when is_tuple(action) do
     Scenic.Scene.cast(get_ref(), action)
+  end
+
+  def handle_cast({:temp, sensor_id, raw_temperature}, state = %{graph: graph}) do
+    graph =
+      case Sensors.get_sensor(sensor_id) do
+        nil ->
+          graph
+
+        %Sensors{scene_id: scene_id} = sensor ->
+          content = Sensors.format_reading(sensor, raw_temperature)
+          Graph.modify(graph, scene_id, &text(&1, content, []))
+      end
+
+    {:noreply, %{state | graph: graph}, push: graph}
   end
 
   def handle_cast({target, content}, state = %{graph: graph}) do
