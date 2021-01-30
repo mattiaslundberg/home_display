@@ -42,6 +42,7 @@ defmodule HomeDisplay.MixProject do
       {:instream, "~> 1.0"},
       {:ex_ical, "~> 0.2.0",
        git: "git@github.com:mattiaslundberg/ex_ical.git", branch: "support-language"},
+      {:plug_cowboy, "~> 2.0"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.11.3", targets: @all_targets},

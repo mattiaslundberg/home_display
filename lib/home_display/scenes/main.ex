@@ -38,6 +38,12 @@ defmodule HomeDisplay.Scene.Main do
         translate: {0, 65},
         id: :local_temp
       )
+      |> text("F XX",
+        font_size: @font_size,
+        fill: :black,
+        translate: {0, 80},
+        id: :freezer_temp
+      )
       |> text("",
         font_size: @font_size,
         fill: :black,
