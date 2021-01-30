@@ -1,4 +1,4 @@
-defmodule HomeDisplay.WeatherPoller do
+defmodule HomeDisplay.Sources.WeatherPoller do
   use GenServer
   require Logger
 

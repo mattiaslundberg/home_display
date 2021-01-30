@@ -20,11 +20,11 @@ defmodule HomeDisplay.Application do
     children =
       [
         # Children for all targets
-        {HomeDisplay.WeatherPoller, location: location},
-        {HomeDisplay.DatePoller, []},
-        {HomeDisplay.KrisinformationPoller, []},
-        {HomeDisplay.OneWireReader, []},
-        {HomeDisplay.EventPoller, urls: urls},
+        {HomeDisplay.Sources.WeatherPoller, location: location},
+        {HomeDisplay.Sources.DatePoller, []},
+        {HomeDisplay.Sources.KrisinformationPoller, []},
+        {HomeDisplay.Sources.OneWireReader, []},
+        {HomeDisplay.Sources.EventPoller, urls: urls},
         {Plug.Cowboy, scheme: :http, plug: HomeDisplay.Web.HttpRouter, options: [port: 4004]},
         HomeDisplay.InfluxConnection
       ] ++ children(target())

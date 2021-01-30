@@ -1,4 +1,4 @@
-defmodule HomeDisplay.EventPoller do
+defmodule HomeDisplay.Sources.EventPoller do
   use GenServer
   require Logger
 

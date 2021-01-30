@@ -1,4 +1,4 @@
-defmodule HomeDisplay.KrisinformationPoller do
+defmodule HomeDisplay.Sources.KrisinformationPoller do
   use GenServer
   require Logger
 

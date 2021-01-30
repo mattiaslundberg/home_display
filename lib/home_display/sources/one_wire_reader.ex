@@ -1,4 +1,4 @@
-defmodule HomeDisplay.OneWireReader do
+defmodule HomeDisplay.Sources.OneWireReader do
   use GenServer
   require Logger
 

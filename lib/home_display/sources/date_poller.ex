@@ -1,4 +1,4 @@
-defmodule HomeDisplay.DatePoller do
+defmodule HomeDisplay.Sources.DatePoller do
   use GenServer
   require Logger
 
