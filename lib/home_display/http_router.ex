@@ -10,9 +10,8 @@ defmodule HomeDisplay.HttpRouter do
     body
     |> Jason.decode!()
     |> Enum.each(fn {target, temperature} ->
-      HomeDisplay.Scene.Main.update_graph(
-        {String.to_existing_atom(target), "R #{round(temperature)}"}
-      )
+      t = String.to_existing_atom(target)
+      HomeDisplay.Scene.Main.update_graph({t, "#{target_label(t)} #{round(temperature)}"})
     end)
 
     send_resp(conn, 200, "ok")
@@ -21,4 +20,7 @@ defmodule HomeDisplay.HttpRouter do
   match _ do
     send_resp(conn, 404, "Not found")
   end
+
+  defp target_label(:freezer_temp), do: "F"
+  defp target_label(_), do: "?"
 end
