@@ -6,6 +6,7 @@ defmodule HomeDisplay.TemperatureSeries do
     measurement("temperature")
 
     tag(:location)
+    tag(:sensor_id)
 
     field(:value)
   end

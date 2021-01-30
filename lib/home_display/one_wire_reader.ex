@@ -21,19 +21,20 @@ defmodule HomeDisplay.OneWireReader do
   def handle_info(:check, state) do
     Process.send_after(self(), :check, @wait_between)
 
-    case OneWire.read_sensors() do
-      [temperature] ->
-        InfluxConnection.write(%TemperatureSeries{
-          fields: %TemperatureSeries.Fields{value: temperature},
-          tags: %TemperatureSeries.Tags{location: "home-display"}
-        })
-
-        HomeDisplay.Scene.Main.update_graph({:local_temp, "L #{round(temperature)}"})
-
-      _ ->
-        Logger.error("Exactly one senor required...")
-    end
+    OneWire.read_sensors()
+    |> Enum.map(&handle_reading/1)
 
     {:noreply, state}
+  end
+
+  defp handle_reading({sensor_id, temperature}) do
+    InfluxConnection.write(%TemperatureSeries{
+      fields: %TemperatureSeries.Fields{value: temperature},
+      tags: %TemperatureSeries.Tags{location: "home-display", sensor_id: sensor_id}
+    })
+
+    if sensor_id == "28-005eeb0000af" do
+      HomeDisplay.Scene.Main.update_graph({:local_temp, "L #{round(temperature)}"})
+    end
   end
 end

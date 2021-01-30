@@ -5,14 +5,22 @@ defmodule OneWire do
   def read_sensors() do
     File.ls!(@base_path)
     |> Enum.filter(&String.starts_with?(&1, "28-"))
-    |> Enum.map(&read_sensor/1)
+    |> Enum.into(%{}, fn sensor_id ->
+      {sensor_id, read_sensor(sensor_id)}
+    end)
   end
 
   def read_sensor(sensor_id) do
     raw_data = File.read!("#{@base_path}#{sensor_id}/w1_slave")
     Logger.debug("Reading sensor #{sensor_id}: #{raw_data}")
 
-    parse_data(raw_data)
+    temp = parse_data(raw_data)
+
+    # Calibrate sensor readings
+    case sensor_id do
+      "28-005eeb0000af" -> temp - 7.1
+      _ -> temp
+    end
   end
 
   def parse_data(raw_data) do
