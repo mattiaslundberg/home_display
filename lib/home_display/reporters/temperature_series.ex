@@ -1,4 +1,4 @@
-defmodule HomeDisplay.TemperatureSeries do
+defmodule HomeDisplay.Reporters.TemperatureSeries do
   use Instream.Series
 
   series do

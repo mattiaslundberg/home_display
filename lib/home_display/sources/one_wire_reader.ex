@@ -2,7 +2,7 @@ defmodule HomeDisplay.Sources.OneWireReader do
   use GenServer
   require Logger
 
-  alias HomeDisplay.{TemperatureSeries, InfluxConnection}
+  alias HomeDisplay.Reporters.{TemperatureSeries, InfluxConnection}
 
   @wait_between 360_000
 

@@ -26,7 +26,7 @@ defmodule HomeDisplay.Application do
         {HomeDisplay.Sources.OneWireReader, []},
         {HomeDisplay.Sources.EventPoller, urls: urls},
         {Plug.Cowboy, scheme: :http, plug: HomeDisplay.Web.HttpRouter, options: [port: 4004]},
-        HomeDisplay.InfluxConnection
+        HomeDisplay.Reporters.InfluxConnection
       ] ++ children(target())
 
     children =

@@ -1,6 +1,6 @@
 defmodule HomeDisplay.KrisinformationPollerTest do
   use ExUnit.Case, async: true
-  alias HomeDisplay.KrisinformationPoller
+  alias HomeDisplay.Sources.KrisinformationPoller
 
   test "parse response" do
     body = File.read!("test/data/krisinformation.json")
