@@ -1,4 +1,4 @@
-defmodule HomeDisplay.HttpRouter do
+defmodule HomeDisplay.Web.HttpRouter do
   use Plug.Router
 
   plug(:match)

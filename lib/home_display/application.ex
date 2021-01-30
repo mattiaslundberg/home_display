@@ -25,7 +25,7 @@ defmodule HomeDisplay.Application do
         {HomeDisplay.KrisinformationPoller, []},
         {HomeDisplay.OneWireReader, []},
         {HomeDisplay.EventPoller, urls: urls},
-        {Plug.Cowboy, scheme: :http, plug: HomeDisplay.HttpRouter, options: [port: 4004]},
+        {Plug.Cowboy, scheme: :http, plug: HomeDisplay.Web.HttpRouter, options: [port: 4004]},
         HomeDisplay.InfluxConnection
       ] ++ children(target())
 
