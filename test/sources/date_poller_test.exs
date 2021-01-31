@@ -8,11 +8,17 @@ defmodule HomeDisplay.Sources.DatePollerTest do
 
   test "loads date" do
     {:ok, pid} = DatePoller.start_link(nil)
+    parent = self()
 
     HomeDisplay.Scene.MainMock
     |> expect(:update_graph, 2, fn
-      {:today, _} -> :ok
-      {:day, _} -> :ok
+      {:today, _} ->
+        send(parent, :handle)
+        :ok
+
+      {:day, _} ->
+        send(parent, :handle2)
+        :ok
     end)
 
     allow(
@@ -22,6 +28,7 @@ defmodule HomeDisplay.Sources.DatePollerTest do
     )
 
     DatePoller.check_now(pid)
-    Process.sleep(100)
+    assert_receive :handle
+    assert_receive :handle2
   end
 end
