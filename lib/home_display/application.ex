@@ -9,13 +9,8 @@ defmodule HomeDisplay.Application do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: HomeDisplay.Supervisor]
-    main_viewport_config = Application.get_env(:home_display, :viewport)
     location = Application.get_env(:home_display, :location, "98210")
     urls = Application.get_env(:home_display, :ical_urls, [])
-
-    non_test_children = [
-      {Scenic, viewports: [main_viewport_config]}
-    ]
 
     children =
       [
@@ -27,14 +22,7 @@ defmodule HomeDisplay.Application do
         {HomeDisplay.Sources.EventPoller, urls: urls},
         {Plug.Cowboy, scheme: :http, plug: HomeDisplay.Web.HttpRouter, options: [port: 4004]},
         HomeDisplay.Reporters.InfluxConnection
-      ] ++ children(target())
-
-    children =
-      if env() == :test do
-        children
-      else
-        children ++ non_test_children
-      end
+      ] ++ children(target()) ++ env_children(env())
 
     Supervisor.start_link(children, opts)
   end
@@ -44,6 +32,15 @@ defmodule HomeDisplay.Application do
   end
 
   def children(_target) do
+    []
+  end
+
+  def env_children(:test) do
+    main_viewport_config = Application.get_env(:home_display, :viewport)
+    [{Scenic, viewports: [main_viewport_config]}]
+  end
+
+  def env_children(_) do
     []
   end
 
