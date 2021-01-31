@@ -33,6 +33,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-mix-build-
 
+      - run: apt-get update && apt-get install pkgconf libglfw3 libglfw3-dev libglew2.1 libglew-dev
       - run: mix archive.install hex nerves_bootstrap --force
       - run: mix deps.get
       - run: mix test
