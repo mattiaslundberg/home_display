@@ -7,6 +7,7 @@ Features:
  * Display of outside temperature (using SMHI API)
  * Display of important government information (using Krisinformation API)
  * Display of temperature readings, both locally (with a onewire sensor) and remotely (over HTTP API)
+ * Reporting of temperature to remote InfluxDB instance
  
 The system is running on a Raspberry PI 3A+ and is using an [Inky pHAT](https://shop.pimoroni.com/products/inky-phat?variant=12549254217811) as its main display.
 
