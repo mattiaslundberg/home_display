@@ -22,7 +22,7 @@ defmodule HomeDisplay.Sources.DatePollerTest do
       pid
     )
 
-    Process.sleep(2000)
     DatePoller.check_now(pid)
+    Process.sleep(100)
   end
 end
