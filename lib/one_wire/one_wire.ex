@@ -14,17 +14,11 @@ defmodule OneWire do
     raw_data = File.read!("#{@base_path}#{sensor_id}/w1_slave")
     Logger.debug("Reading sensor #{sensor_id}: #{raw_data}")
 
-    temp = parse_data(raw_data)
-
-    # Calibrate sensor readings
-    case sensor_id do
-      "28-005eeb0000af" -> temp - 7.1
-      _ -> temp
-    end
+    parse_data(raw_data)
   end
 
   def parse_data(raw_data) do
-    [_, temp] = Regex.run(~r/t=(\d+)/, raw_data)
+    [_, temp] = Regex.run(~r/t=(-?\d+)/, raw_data)
 
     temp
     |> String.to_integer()
