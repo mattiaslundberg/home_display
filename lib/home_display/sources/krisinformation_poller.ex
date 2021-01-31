@@ -1,6 +1,7 @@
 defmodule HomeDisplay.Sources.KrisinformationPoller do
   use GenServer
   require Logger
+  alias HomeDisplay.Scene.Main
 
   @wait_between 80_000
 
@@ -24,7 +25,7 @@ defmodule HomeDisplay.Sources.KrisinformationPoller do
       |> handle_response()
 
     title = Map.get(latest_event, "Title", "")
-    HomeDisplay.Scene.Main.update_graph({:kris, "#{title}"})
+    Main.update_graph({:kris, "#{title}"})
     {:noreply, state}
   end
 

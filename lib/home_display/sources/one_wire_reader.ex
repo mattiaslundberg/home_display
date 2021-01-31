@@ -12,7 +12,7 @@ defmodule HomeDisplay.Sources.OneWireReader do
 
   @impl GenServer
   def init(_) do
-    Process.send_after(self(), :check, 10000)
+    Process.send_after(self(), :check, 10_000)
 
     {:ok, %{}}
   end
@@ -22,7 +22,7 @@ defmodule HomeDisplay.Sources.OneWireReader do
     Process.send_after(self(), :check, @wait_between)
 
     OneWire.read_sensors()
-    |> Enum.map(&handle_reading/1)
+    |> Enum.each(&handle_reading/1)
 
     {:noreply, state}
   end

@@ -1,6 +1,7 @@
 defmodule HomeDisplay.Sources.WeatherPoller do
   use GenServer
   require Logger
+  alias HomeDisplay.Scene.Main
 
   @wait_between 80_000
 
@@ -33,7 +34,7 @@ defmodule HomeDisplay.Sources.WeatherPoller do
   @impl GenServer
   def handle_cast({:new_temp, new_temp}, state)
       when is_binary(new_temp) do
-    HomeDisplay.Scene.Main.update_graph({:temp, "smhi", new_temp})
+    Main.update_graph({:temp, "smhi", new_temp})
     {:noreply, %{state | last_temp: new_temp}}
   end
 

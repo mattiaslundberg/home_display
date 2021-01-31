@@ -1,6 +1,7 @@
 defmodule HomeDisplay.Sources.EventPoller do
   use GenServer
   require Logger
+  alias HomeDisplay.Scene.Main
 
   @wait_between 80_000
 
@@ -50,8 +51,8 @@ defmodule HomeDisplay.Sources.EventPoller do
 
   @impl GenServer
   def handle_cast({:next_event, event = %{summary: summary}}, state) do
-    HomeDisplay.Scene.Main.update_graph({:event, summary})
-    HomeDisplay.Scene.Main.update_graph({:event_time, pretty_start(event)})
+    Main.update_graph({:event, summary})
+    Main.update_graph({:event_time, pretty_start(event)})
 
     {:noreply, %{state | last_event: event}}
   end

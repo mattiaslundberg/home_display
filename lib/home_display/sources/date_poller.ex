@@ -1,6 +1,7 @@
 defmodule HomeDisplay.Sources.DatePoller do
   use GenServer
   require Logger
+  alias HomeDisplay.Scene.Main
 
   @wait_between 360_000
 
@@ -20,10 +21,10 @@ defmodule HomeDisplay.Sources.DatePoller do
     Process.send_after(self(), :check, @wait_between)
 
     content = Timex.format!(Timex.now(), "{D}/{M}")
-    HomeDisplay.Scene.Main.update_graph({:today, content})
+    Main.update_graph({:today, content})
 
     content = Timex.format!(Timex.now(), "{WDshort}")
-    HomeDisplay.Scene.Main.update_graph({:day, content})
+    Main.update_graph({:day, content})
     {:noreply, state}
   end
 end
