@@ -4,6 +4,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      HOME_DISPLAY_CALENDAR_URLS: ""
+      HOME_DISPLAY_WIFI_SSID: ""
+      HOME_DISPLAY_WIFI_PSK: ""
+      HOME_DISPLAY_INFLUX_HOST: ""
+      HOME_DISPLAY_INFLUX_USER: ""
+      HOME_DISPLAY_INFLUX_PASS: ""
+
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-elixir@v1
