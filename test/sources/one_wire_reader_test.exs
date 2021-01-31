@@ -1,4 +1,4 @@
-defmodule HomeDisplay.OneWireReaderTest do
+defmodule HomeDisplay.Sources.OneWireReaderTest do
   use ExUnit.Case, async: true
   alias HomeDisplay.Sources.OneWireReader
 

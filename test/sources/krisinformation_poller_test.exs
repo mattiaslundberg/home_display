@@ -1,4 +1,4 @@
-defmodule HomeDisplay.KrisinformationPollerTest do
+defmodule HomeDisplay.Sources.KrisinformationPollerTest do
   use ExUnit.Case, async: true
   alias HomeDisplay.Sources.KrisinformationPoller
 
