@@ -3,6 +3,7 @@ defmodule HomeDisplay.Sources.OneWireReader do
   require Logger
 
   alias HomeDisplay.Reporters.TemperatureSeries
+  alias HomeDisplay.Sensors
 
   @wait_between 360_000
 
@@ -31,8 +32,10 @@ defmodule HomeDisplay.Sources.OneWireReader do
     influx = Application.get_env(:home_display, :influx_module)
     main = Application.get_env(:home_display, :main_scene)
 
+    sensor = Sensors.get_sensor(sensor_id)
+
     influx.write(%TemperatureSeries{
-      fields: %TemperatureSeries.Fields{value: temperature},
+      fields: %TemperatureSeries.Fields{value: Sensors.format_temperature(sensor, temperature)},
       tags: %TemperatureSeries.Tags{location: "home-display", sensor_id: sensor_id}
     })
 

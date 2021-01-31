@@ -27,9 +27,11 @@ defmodule HomeDisplay.Sensors do
   def get_sensor(sensor_id), do: Map.get(sensors(), sensor_id)
 
   def format_reading(sensor, raw_temperature \\ ".") do
-    "#{sensor.label} #{format_temperature(raw_temperature)}"
+    "#{sensor.label} #{format_temperature(sensor, raw_temperature)}"
   end
 
-  defp format_temperature(t) when is_float(t), do: Float.round(t, 1)
-  defp format_temperature(t), do: t
+  def format_temperature(sensor, t) when is_float(t),
+    do: Float.round(t, 1) + sensor.temperature_offset
+
+  def format_temperature(_, t), do: t
 end
