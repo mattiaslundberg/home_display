@@ -1,24 +1,24 @@
 # HomeDisplay
 
-Displaying useful information on a [Inky pHAT](https://shop.pimoroni.com/products/inky-phat?variant=12549254217811) and from a raspberry pi 3.
+Home Dashboard for display of some useful information.
 
-## Targets
+Features:
 
-Nerves applications produce images for hardware targets based on the
-`MIX_TARGET` environment variable. If `MIX_TARGET` is unset, `mix` builds an
-image that runs on the host (e.g., your laptop). This is useful for executing
-logic tests, running utilities, and debugging. Other targets are represented by
-a short name like `rpi3` that maps to a Nerves system image for that platform.
-All of this logic is in the generated `mix.exs` and may be customized. For more
-information about targets see:
+ * Display of outside temperature (using SMHI API)
+ * Display of important government information (using Krisinformation API)
+ * Display of temperature readings, both locally (with a onewire sensor) and remotely (over HTTP API)
+ 
+The system is running on a Raspberry PI 3A+ and is using an [Inky pHAT](https://shop.pimoroni.com/products/inky-phat?variant=12549254217811) as its main display.
 
-https://hexdocs.pm/nerves/targets.html#content
+## Tech
 
-## Getting Started
+Build using Elixir and Nerves.
+
+### Getting Started
 
 To start your Nerves app:
 
-- Setup PI and pHAT
+- Setup PI and pHAT (PI 3A+ tested, should work on others with small modifications)
 - Set `HOME_DISPLAY_WIFI_SSID`, `HOME_DISPLAY_WIFI_PSK` and `HOME_DISPLAY_CALENDAR_URLS`
 - `export MIX_TARGET=rpi3` or prefix every command with
   `MIX_TARGET=rpi3`.
@@ -27,7 +27,7 @@ To start your Nerves app:
 - Burn to an SD card with `mix firmware.burn`
 - Update with `mix upload home-display.local`
 
-## Learn more
+### Learn more
 
 - Official docs: https://hexdocs.pm/nerves/getting-started.html
 - Official website: https://nerves-project.org/
