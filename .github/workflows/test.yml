@@ -34,6 +34,7 @@ jobs:
             ${{ runner.os }}-mix-build-
 
       - run: mix deps.get
+      - run: mix archive.install hex nerves_bootstrap
       - run: mix test
       - run: mix credo --strict
       - run: mix dialyzer
