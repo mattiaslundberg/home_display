@@ -13,7 +13,6 @@ defmodule HomeDisplay.Sources.DatePollerTest do
     |> expect(:update_graph, 2, fn
       {:today, _} -> :ok
       {:day, _} -> :ok
-      _ -> :ok
     end)
 
     allow(
