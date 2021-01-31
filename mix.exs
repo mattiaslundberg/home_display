@@ -60,7 +60,8 @@ defmodule HomeDisplay.MixProject do
       # Test dependencies
       {:inky_host_dev, "~> 1.0", targets: :host, only: :dev},
       {:scenic_driver_glfw, "~> 0.10", targets: :host},
-      {:mox, "~> 1.0", only: :test}
+      {:mox, "~> 1.0", only: :test},
+      {:stream_data, "~> 0.5", only: [:test, :dev]}
     ]
   end
 
