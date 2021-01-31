@@ -2,7 +2,8 @@ defmodule HomeDisplay.Sources.OneWireReader do
   use GenServer
   require Logger
 
-  alias HomeDisplay.Reporters.{TemperatureSeries, InfluxConnection}
+  alias HomeDisplay.Reporters.{InfluxConnection, TemperatureSeries}
+  alias HomeDisplay.Scene.Main
 
   @wait_between 360_000
 
@@ -33,6 +34,6 @@ defmodule HomeDisplay.Sources.OneWireReader do
       tags: %TemperatureSeries.Tags{location: "home-display", sensor_id: sensor_id}
     })
 
-    HomeDisplay.Scene.Main.update_graph({:temp, sensor_id, temperature})
+    Main.update_graph({:temp, sensor_id, temperature})
   end
 end

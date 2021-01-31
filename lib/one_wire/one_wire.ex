@@ -2,7 +2,7 @@ defmodule OneWire do
   require Logger
   @base_path "/sys/bus/w1/devices/"
 
-  def read_sensors() do
+  def read_sensors do
     File.ls!(@base_path)
     |> Enum.filter(&String.starts_with?(&1, "28-"))
     |> Enum.into(%{}, fn sensor_id ->

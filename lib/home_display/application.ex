@@ -44,11 +44,11 @@ defmodule HomeDisplay.Application do
     []
   end
 
-  def target() do
+  def target do
     Application.get_env(:home_display, :target)
   end
 
-  def env() do
+  def env do
     Application.get_env(:home_display, :env)
   end
 end

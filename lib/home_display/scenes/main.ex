@@ -83,7 +83,7 @@ defmodule HomeDisplay.Scene.Main do
     {:noreply, %{state | graph: graph}, push: graph}
   end
 
-  defp get_ref() do
+  defp get_ref do
     {:ok, %{root_graph: {_, ref, _}}} = Scenic.ViewPort.info(:main_viewport)
     ref
   end
