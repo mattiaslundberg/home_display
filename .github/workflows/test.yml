@@ -33,7 +33,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-mix-build-
 
-      - run: mix archive.install hex nerves_bootstrap
+      - run: mix archive.install hex nerves_bootstrap --force
       - run: mix deps.get
       - run: mix test
       - run: mix credo --strict
