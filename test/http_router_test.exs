@@ -6,6 +6,8 @@ defmodule HomeDisplay.HttpRouterTest do
 
   @opts HomeDisplay.Web.HttpRouter.init([])
 
+  setup :verify_on_exit!
+
   test "post temperature" do
     parent = self()
 
