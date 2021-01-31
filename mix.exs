@@ -15,10 +15,13 @@ defmodule HomeDisplay.MixProject do
       build_embedded: true,
       deps: deps(),
       releases: [{@app, release()}],
+      elixirc_paths: elixirc_paths(Mix.env()),
       preferred_cli_target: [run: :host, test: :host]
     ]
   end
 
+  defp elixirc_paths(:test), do: ["test/support", "lib"]
+  defp elixirc_paths(_), do: ["lib"]
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
@@ -56,7 +59,8 @@ defmodule HomeDisplay.MixProject do
 
       # Test dependencies
       {:inky_host_dev, "~> 1.0", targets: :host, only: :dev},
-      {:scenic_driver_glfw, "~> 0.10", targets: :host}
+      {:scenic_driver_glfw, "~> 0.10", targets: :host},
+      {:mox, "~> 1.0", only: :test}
     ]
   end
 

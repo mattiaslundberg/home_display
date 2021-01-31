@@ -8,6 +8,8 @@ defmodule HomeDisplay.Scene.Main do
   @font_size 20
   @font :roboto
 
+  @callback update_graph(tuple()) :: atom()
+
   def init(_, _) do
     graph =
       Graph.build(font_size: @font_size, font: @font, id: :main_graph)
