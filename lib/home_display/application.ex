@@ -36,12 +36,12 @@ defmodule HomeDisplay.Application do
   end
 
   def env_children(:test) do
-    main_viewport_config = Application.get_env(:home_display, :viewport)
-    [{Scenic, viewports: [main_viewport_config]}]
+    []
   end
 
   def env_children(_) do
-    []
+    main_viewport_config = Application.get_env(:home_display, :viewport)
+    [{Scenic, viewports: [main_viewport_config]}]
   end
 
   def target do
