@@ -15,10 +15,16 @@ defmodule HomeDisplay.Sensors do
         label: "O",
         temperature_offset: 0
       },
-      "28-todo" => %__MODULE__{
-        scene_id: :freezer_temp,
+      "28-01203582c136" => %__MODULE__{
+        scene_id: :unknown1,
         scene_location: {0, 80},
-        label: "F",
+        label: "?",
+        temperature_offset: 0
+      },
+      "28-012035895244" => %__MODULE__{
+        scene_id: :unknown2,
+        scene_location: {60, 65},
+        label: "?",
         temperature_offset: 0
       }
     }
