@@ -11,7 +11,7 @@ defmodule HomeDisplay.Sources.WeatherPoller do
 
   @impl GenServer
   def init(%{location: location}) do
-    send(self(), :check)
+    Process.send_after(self(), :check, 3000)
 
     {:ok, %{location: location, last_temp: ""}}
   end
@@ -46,7 +46,7 @@ defmodule HomeDisplay.Sources.WeatherPoller do
     body |> Jason.decode!() |> Map.get("value", []) |> latest_value()
   end
 
-  defp handle_response(_), do: "N/A"
+  defp handle_response(_), do: nil
 
   defp latest_value(values) do
     values
