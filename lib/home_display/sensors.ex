@@ -16,15 +16,15 @@ defmodule HomeDisplay.Sensors do
         temperature_offset: 0
       },
       "28-01203582c136" => %__MODULE__{
-        scene_id: :unknown1,
+        scene_id: :kitchen1,
         scene_location: {0, 80},
-        label: "?",
+        label: "K",
         temperature_offset: 0
       },
       "28-012035895244" => %__MODULE__{
-        scene_id: :unknown2,
-        scene_location: {60, 65},
-        label: "?",
+        scene_id: :kitchen,
+        scene_location: {60, 50},
+        label: "k",
         temperature_offset: 0
       }
     }
