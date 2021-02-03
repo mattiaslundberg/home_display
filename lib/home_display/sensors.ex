@@ -37,7 +37,7 @@ defmodule HomeDisplay.Sensors do
   end
 
   def format_temperature(sensor, t) when is_float(t),
-    do: Float.round(t, 1) + sensor.temperature_offset
+    do: round(t + sensor.temperature_offset)
 
   def format_temperature(_, t), do: t
 end
