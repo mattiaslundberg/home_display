@@ -73,11 +73,11 @@ defmodule HomeDisplay.Scene.Main do
 
     {graph, last_updates} =
       last_updates
-      |> Enum.reduce({graph, []}, fn {scene_id, updated_at}, {graph, new_last_updates} ->
+      |> Enum.reduce({graph, %{}}, fn {scene_id, updated_at}, {graph, last_updates} ->
         if DateTime.diff(updated_at, now) |> abs() > 3600 do
-          {expire_display(graph, scene_id), new_last_updates}
+          {expire_display(graph, scene_id), last_updates}
         else
-          {graph, [{scene_id, updated_at} | last_updates]}
+          {graph, Map.put(last_updates, scene_id, updated_at)}
         end
       end)
 
