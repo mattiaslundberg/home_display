@@ -58,7 +58,7 @@ defmodule HomeDisplay.Scene.Main do
         )
       end)
 
-    Process.send_after(self(), :expire_old, 10000)
+    Process.send_after(self(), :expire_old, 1_000_000)
 
     {:ok, %{graph: graph, last_updates: %{}}, push: graph}
   end
