@@ -20,7 +20,7 @@ defmodule HomeDisplay.SensorsTest do
     test "float temperature" do
       sensor = Sensors.get_sensor("smhi")
 
-      assert "O 3.9" = Sensors.format_reading(sensor, 3.899)
+      assert "O 4" = Sensors.format_reading(sensor, 3.899)
     end
 
     test "string temperature" do
