@@ -58,31 +58,53 @@ defmodule HomeDisplay.Scene.Main do
         )
       end)
 
-    {:ok, %{graph: graph}, push: graph}
+    Process.send_after(self(), :expire_old, 10000)
+
+    {:ok, %{graph: graph, last_updates: %{}}, push: graph}
   end
 
   def update_graph(action) when is_tuple(action) do
     Scenic.Scene.cast(get_ref(), action)
   end
 
-  def handle_cast({:temp, sensor_id, raw_temperature}, state = %{graph: graph}) do
-    graph =
-      case Sensors.get_sensor(sensor_id) do
-        nil ->
-          graph
+  def handle_info(:expire_old, state = %{last_updates: last_updates, graph: graph}) do
+    Process.send_after(self(), :expire_old, 1_000_000)
+    now = DateTime.utc_now()
 
-        %Sensors{scene_id: scene_id} = sensor ->
-          content = Sensors.format_reading(sensor, raw_temperature)
-          Graph.modify(graph, scene_id, &text(&1, content, []))
-      end
+    {graph, last_updates} =
+      last_updates
+      |> Enum.reduce({graph, []}, fn {scene_id, updated_at}, {graph, new_last_updates} ->
+        if DateTime.diff(updated_at, now) |> abs() > 1 do
+          {expire_display(graph, scene_id), new_last_updates}
+        else
+          {graph, [{scene_id, updated_at} | last_updates]}
+        end
+      end)
 
-    {:noreply, %{state | graph: graph}, push: graph}
+    {:noreply, %{state | graph: graph, last_updates: last_updates}, push: graph}
   end
 
-  def handle_cast({target, content}, state = %{graph: graph}) do
-    graph = Graph.modify(graph, target, &text(&1, content, []))
+  def handle_cast({:temp, sensor_id, raw_temperature}, state) do
+    case Sensors.get_sensor(sensor_id) do
+      nil ->
+        {:noreply, state}
 
-    {:noreply, %{state | graph: graph}, push: graph}
+      %Sensors{scene_id: scene_id} = sensor ->
+        content = Sensors.format_reading(sensor, raw_temperature)
+        do_update(state, scene_id, content)
+    end
+  end
+
+  def handle_cast({target, content}, state), do: do_update(state, target, content)
+
+  defp expire_display(graph, scene_id) do
+    Graph.modify(graph, scene_id, &text(&1, "#", []))
+  end
+
+  defp do_update(state = %{graph: graph, last_updates: last_updates}, target, content) do
+    last_updates = Map.put(last_updates, target, DateTime.utc_now())
+    graph = Graph.modify(graph, target, &text(&1, content, []))
+    {:noreply, %{state | graph: graph, last_updates: last_updates}, push: graph}
   end
 
   defp get_ref do
