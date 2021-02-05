@@ -8,6 +8,8 @@ defmodule HomeDisplay.Scene.Main do
   @font_size 20
   @font :roboto
 
+  @expire_every 2_500_000
+
   @callback update_graph(tuple()) :: atom()
 
   def init(_, _) do
@@ -58,7 +60,7 @@ defmodule HomeDisplay.Scene.Main do
         )
       end)
 
-    Process.send_after(self(), :expire_old, 1_000_000)
+    :timer.send_interval(@expire_every, :expire_old)
 
     {:ok, %{graph: graph, last_updates: %{}}, push: graph}
   end
@@ -68,7 +70,6 @@ defmodule HomeDisplay.Scene.Main do
   end
 
   def handle_info(:expire_old, state = %{last_updates: last_updates, graph: graph}) do
-    Process.send_after(self(), :expire_old, 1_000_000)
     now = DateTime.utc_now()
 
     {graph, last_updates} =

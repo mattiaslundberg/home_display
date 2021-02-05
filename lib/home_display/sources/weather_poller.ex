@@ -3,7 +3,7 @@ defmodule HomeDisplay.Sources.WeatherPoller do
   require Logger
   alias HomeDisplay.Scene.Main
 
-  @wait_between 80_000
+  @wait_between 3_600_000
 
   def start_link(location: location) do
     GenServer.start_link(__MODULE__, %{location: location})

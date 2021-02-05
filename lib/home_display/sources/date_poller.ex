@@ -2,7 +2,7 @@ defmodule HomeDisplay.Sources.DatePoller do
   use GenServer
   require Logger
 
-  @wait_between 360_000
+  @wait_between 3_600_000
 
   def start_link(_) do
     GenServer.start_link(__MODULE__, nil)
