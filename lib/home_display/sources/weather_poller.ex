@@ -11,7 +11,7 @@ defmodule HomeDisplay.Sources.WeatherPoller do
 
   @impl GenServer
   def init(%{location: location}) do
-    Process.send_after(self(), :check, 3000)
+    Process.send_after(self(), :check, 10_000)
 
     {:ok, %{location: location, last_temp: ""}}
   end
@@ -37,10 +37,6 @@ defmodule HomeDisplay.Sources.WeatherPoller do
     temp = String.to_float(new_temp)
     Main.update_graph({:temp, "smhi", temp})
     {:noreply, %{state | last_temp: new_temp}}
-  end
-
-  def handle_cast({:new_temp, _}, state) do
-    {:noreply, state}
   end
 
   defp handle_response({:ok, %{body: body}}) do

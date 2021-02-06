@@ -11,7 +11,7 @@ defmodule HomeDisplay.Sources.EventPoller do
 
   @impl GenServer
   def init(calendar_urls) do
-    send(self(), :check)
+    Process.send_after(self(), :check, 3000)
 
     {:ok, %{calendar_urls: calendar_urls, last_event: nil}}
   end

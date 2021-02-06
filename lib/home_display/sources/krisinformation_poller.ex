@@ -11,7 +11,7 @@ defmodule HomeDisplay.Sources.KrisinformationPoller do
 
   @impl GenServer
   def init(_) do
-    Process.send_after(self(), :check, 1000)
+    Process.send_after(self(), :check, 3000)
 
     {:ok, %{}}
   end
