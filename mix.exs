@@ -48,6 +48,7 @@ defmodule HomeDisplay.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:one_wire, "~> 0.1.0", git: "https://github.com/mattiaslundberg/one_wire.git"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.11.3", targets: @all_targets},
