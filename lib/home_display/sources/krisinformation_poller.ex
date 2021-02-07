@@ -33,8 +33,23 @@ defmodule HomeDisplay.Sources.KrisinformationPoller do
     body
     |> Jason.decode!()
     |> Map.get("Entries", [])
+    |> Enum.filter(&filter_entries/1)
     |> List.first()
   end
 
   def handle_response(_), do: %{}
+
+  defp filter_entries(%{"CapArea" => areas}) do
+    Enum.any?(areas, fn %{"CapAreaDesc" => area} ->
+      relevant?(area)
+    end)
+  end
+
+  defp relevant?(area) do
+    cond do
+      String.starts_with?(area, "Stockholm") -> true
+      String.starts_with?(area, "Sverige") -> true
+      true -> false
+    end
+  end
 end

@@ -1,0 +1,184 @@
+{
+  "Entries": [
+    {
+      "ID": "https://api.krisinformation.se/v1/capmessage/15573?format=xml",
+      "Updated": "2021-02-06T11:36:14+01:00",
+      "Published": "2021-02-06T11:36:14+01:00",
+      "CapEvent": "News",
+      "Author": {
+        "Name": "https://www.krisinformation.se/"
+      },
+      "Title": "SMHI: Klass 2-varning för snöfall med kraftig drivbildning i Skåne",
+      "Link": {
+        "Id": null,
+        "LinkName": null,
+        "LinkUrl": "https://api.krisinformation.se/v1/capmessage/15573?format=xml"
+      },
+      "Summary": "SMHI har utfärdat en klass 2-varning för snöfall som kan ge kraftig drivbildning i Skåne under söndag eftermiddag och kväll. ",
+      "CapArea": [
+        {
+          "CapAreaDesc": "Skåne län",
+          "Coordinate": "13.5339954630322,55.8614466949293 0"
+        }
+      ]
+    },
+    {
+      "ID": "https://api.krisinformation.se/v1/capmessage/15570?format=xml",
+      "Updated": "2021-02-04T18:18:36+01:00",
+      "Published": "2021-02-04T18:18:36+01:00",
+      "CapEvent": "News",
+      "Author": {
+        "Name": "https://www.krisinformation.se/"
+      },
+      "Title": "Regeringen förlänger nationella restriktioner ",
+      "Link": {
+        "Id": null,
+        "LinkName": null,
+        "LinkUrl": "https://api.krisinformation.se/v1/capmessage/15570?format=xml"
+      },
+      "Summary": "Regeringen har beslutat att förlänga alkoholstoppet efter klockan 20.00 på serveringsställen, och föreslår fler åtgärder med hjälp av pandemilagen. ",
+      "CapArea": [
+        {
+          "CapAreaDesc": "Sverige",
+          "Coordinate": "16.596265846848,62.8114849680804 0"
+        }
+      ]
+    },
+    {
+      "ID": "https://api.krisinformation.se/v1/capmessage/15569?format=xml",
+      "Updated": "2021-02-04T17:23:29+01:00",
+      "Published": "2021-02-04T14:13:43+01:00",
+      "CapEvent": "News",
+      "Author": {
+        "Name": "https://www.krisinformation.se/"
+      },
+      "Title": "Gymnasieungdomar kan delta i idrottsaktiviteter",
+      "Link": {
+        "Id": null,
+        "LinkName": null,
+        "LinkUrl": "https://api.krisinformation.se/v1/capmessage/15569?format=xml"
+      },
+      "Summary": "Folkhälsomyndigheten öppnar nu för att även äldre ungdomar som är födda 2002 eller senare kan delta i organiserade idrotts- och fritidsaktiviteter, både inomhus och utomhus. Bedömningen är att de positiva aspekterna av barn och ungas fysiska aktivitet överväger och därför görs en ändring i de allmänna råden.",
+      "CapArea": [
+        {
+          "CapAreaDesc": "Sverige",
+          "Coordinate": "16.596265846848,62.8114849680804 0"
+        }
+      ]
+    },
+    {
+      "ID": "https://api.krisinformation.se/v1/capmessage/15567?format=xml",
+      "Updated": "2021-02-04T10:52:55+01:00",
+      "Published": "2021-02-04T10:52:55+01:00",
+      "CapEvent": "News",
+      "Author": {
+        "Name": "https://www.krisinformation.se/"
+      },
+      "Title": "Sverige planerar för digitala vaccinationsintyg",
+      "Link": {
+        "Id": null,
+        "LinkName": null,
+        "LinkUrl": "https://api.krisinformation.se/v1/capmessage/15567?format=xml"
+      },
+      "Summary": "Regeringen har gett tre myndigheter i uppdrag att ta fram ett digitalt vaccinationsintyg som man hoppas ska finnas på plats 1 juni 2021. Ett sådant intyg kan komma att krävas av vissa länder vid inresa, eller vid exempelvis kultur- och idrottsevenemang. ",
+      "CapArea": [
+        {
+          "CapAreaDesc": "Sverige",
+          "Coordinate": "16.596265846848,62.8114849680804 0"
+        }
+      ]
+    },
+    {
+      "ID": "https://api.krisinformation.se/v1/capmessage/15565?format=xml",
+      "Updated": "2021-02-04T09:38:00+01:00",
+      "Published": "2021-02-04T09:38:00+01:00",
+      "CapEvent": "News",
+      "Author": {
+        "Name": "https://www.krisinformation.se/"
+      },
+      "Title": "Fler får vaccineras i fas 2",
+      "Link": {
+        "Id": null,
+        "LinkName": null,
+        "LinkUrl": "https://api.krisinformation.se/v1/capmessage/15565?format=xml"
+      },
+      "Summary": "Folkhälsomyndigheten har ändrat i prioritetsordningen för vaccineringen mot covid-19. Alla som fyllt 65 år ska prioriteras i vaccinationsarbetets andra fas. Tidigare skulle personer från 70 år ingå. I den tredje fasen ingår nu personer från 60 år samt personer med vissa sjukdomar. ",
+      "CapArea": [
+        {
+          "CapAreaDesc": "Sverige",
+          "Coordinate": "16.596265846848,62.8114849680804 0"
+        }
+      ]
+    },
+    {
+      "ID": "https://api.krisinformation.se/v1/capmessage/15561?format=xml",
+      "Updated": "2021-02-03T17:41:54+01:00",
+      "Published": "2021-02-03T17:41:00+01:00",
+      "CapEvent": "News",
+      "Author": {
+        "Name": "https://www.krisinformation.se/"
+      },
+      "Title": "Krav på negativt covid-19 test för inresa till Sverige",
+      "Link": {
+        "Id": null,
+        "LinkName": null,
+        "LinkUrl": "https://api.krisinformation.se/v1/capmessage/15561?format=xml"
+      },
+      "Summary": "Från och med lördag 6 februari kommer utländska medborgare att behöva visa upp ett negativt covid-19-test för att få resa in i Sverige. ",
+      "CapArea": [
+        {
+          "CapAreaDesc": "Sverige",
+          "Coordinate": "16.596265846848,62.8114849680804 0"
+        }
+      ]
+    },
+    {
+      "ID": "https://api.krisinformation.se/v1/capmessage/15555?format=xml",
+      "Updated": "2021-02-02T14:38:20+01:00",
+      "Published": "2021-02-02T14:38:00+01:00",
+      "CapEvent": "News",
+      "Author": {
+        "Name": "https://www.krisinformation.se/"
+      },
+      "Title": "Astra Zenecas vaccin enbart till yngre än 65 år",
+      "Link": {
+        "Id": null,
+        "LinkName": null,
+        "LinkUrl": "https://api.krisinformation.se/v1/capmessage/15555?format=xml"
+      },
+      "Summary": "Folkhälsomyndigheten rekommenderar att Astra Zenecas vaccin i första hand ges till personer mellan 18 och 64 år. Än så länge saknas data om hur effektivt vaccinet skyddar mot covid-19 i de äldre åldersgrupperna.  ",
+      "CapArea": [
+        {
+          "CapAreaDesc": "Sverige",
+          "Coordinate": "16.596265846848,62.8114849680804 0"
+        }
+      ]
+    },
+    {
+      "ID": "https://api.krisinformation.se/v1/capmessage/15553?format=xml",
+      "Updated": "2021-02-02T14:31:00+01:00",
+      "Published": "2021-02-02T14:31:00+01:00",
+      "CapEvent": "News",
+      "Author": {
+        "Name": "https://www.krisinformation.se/"
+      },
+      "Title": "Tecken på ökad spridning av&nbsp; brittisk virusvariant",
+      "Link": {
+        "Id": null,
+        "LinkName": null,
+        "LinkUrl": "https://api.krisinformation.se/v1/capmessage/15553?format=xml"
+      },
+      "Summary": "Folkhälsomyndigheten har undersökt över 2 000 fall av covid-19 för att få reda på förekomsten av den brittiska muterade virusvarianten i Sverige. Elva procent av proverna visade sig vara av den brittiska varianten.",
+      "CapArea": [
+        {
+          "CapAreaDesc": "Storbritannien",
+          "Coordinate": "-2.85313539518054,53.9147734805371 0"
+        },
+        {
+          "CapAreaDesc": "Sverige",
+          "Coordinate": "16.596265846848,62.8114849680804 0"
+        }
+      ]
+    }
+  ]
+}
