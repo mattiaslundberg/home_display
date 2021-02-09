@@ -20,11 +20,11 @@ defmodule HomeDisplay.Sources.KrisinformationPoller do
   def handle_info(:check, state) do
     Process.send_after(self(), :check, @wait_between)
 
-    latest_event =
+    title =
       Tesla.get("https://api.krisinformation.se/v1/feed?format=json")
       |> handle_response()
+      |> Map.get("Title", "")
 
-    title = Map.get(latest_event, "Title", "")
     Main.update_graph({:kris, "#{title}"})
     {:noreply, state}
   end
