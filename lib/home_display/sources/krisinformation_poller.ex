@@ -30,11 +30,17 @@ defmodule HomeDisplay.Sources.KrisinformationPoller do
   end
 
   def handle_response({:ok, %{body: body}}) do
-    body
-    |> Jason.decode!()
-    |> Map.get("Entries", [])
-    |> Enum.filter(&filter_entries/1)
-    |> List.first()
+    entries_to_consider =
+      body
+      |> Jason.decode!()
+      |> Map.get("Entries", [])
+      |> Enum.filter(&filter_entries/1)
+
+    if length(entries_to_consider) == 0 do
+      %{}
+    else
+      List.first(entries_to_consider)
+    end
   end
 
   def handle_response(_), do: %{}
