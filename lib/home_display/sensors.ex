@@ -3,27 +3,27 @@ defmodule HomeDisplay.Sensors do
 
   def sensors do
     %{
-      "28-005eeb0000af" => %__MODULE__{
-        scene_id: :local_temp,
-        scene_location: {0, 65},
-        label: "L",
-        temperature_offset: -7.1
-      },
       "smhi" => %__MODULE__{
         scene_id: :out_temp,
-        scene_location: {0, 50},
+        scene_location: {0, 45},
         label: "O",
         temperature_offset: 0
       },
+      "28-005eeb0000af" => %__MODULE__{
+        scene_id: :local_temp,
+        scene_location: {50, 45},
+        label: "L",
+        temperature_offset: -7.1
+      },
       "28-01203582c136" => %__MODULE__{
         scene_id: :kitchen1,
-        scene_location: {0, 80},
+        scene_location: {100, 45},
         label: "K",
         temperature_offset: 0
       },
       "28-012035895244" => %__MODULE__{
         scene_id: :kitchen,
-        scene_location: {60, 50},
+        scene_location: {150, 45},
         label: "k",
         temperature_offset: 0
       }

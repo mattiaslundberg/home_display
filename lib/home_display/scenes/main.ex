@@ -16,31 +16,29 @@ defmodule HomeDisplay.Scene.Main do
     graph =
       Graph.build(font_size: @font_size, font: @font, id: :main_graph)
       |> rectangle({212, 104}, fill: :white)
-      |> line({{0, 33}, {212, 33}}, fill: :black)
-      |> line({{0, 88}, {212, 88}}, fill: :black)
-      |> line({{59, 0}, {59, 88}}, fill: :black)
+      |> line({{0, 77}, {212, 77}}, fill: :black)
       |> text("",
         font_size: @font_size,
         fill: :black,
-        translate: {0, 15},
+        translate: {0, 30},
         id: :today
       )
       |> text("",
         font_size: @font_size,
         fill: :black,
-        translate: {0, 30},
+        translate: {45, 30},
         id: :day
       )
       |> text("",
         font_size: @font_size,
         fill: :black,
-        translate: {60, 15},
+        translate: {0, 73},
         id: :event
       )
       |> text("",
-        font_size: @font_size,
+        font_size: @font_size - 4,
         fill: :black,
-        translate: {60, 30},
+        translate: {0, 60},
         id: :event_time
       )
       |> text("",
@@ -52,7 +50,7 @@ defmodule HomeDisplay.Scene.Main do
       |> text("",
         font_size: @font_size - 4,
         fill: :black,
-        translate: {60, 82},
+        translate: {0, 89},
         id: :pollen
       )
 
