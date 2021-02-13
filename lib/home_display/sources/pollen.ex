@@ -26,7 +26,7 @@ defmodule HomeDisplay.Sources.Pollen do
       )
       |> handle_response()
 
-    Main.update_graph({:pollen, "Pollen #{data}"})
+    Main.update_graph({:pollen, "#{data}"})
     {:noreply, state}
   end
 
