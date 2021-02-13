@@ -20,6 +20,7 @@ defmodule HomeDisplay.Application do
         {HomeDisplay.Sources.KrisinformationPoller, []},
         {HomeDisplay.Sources.OneWireReader, []},
         {HomeDisplay.Sources.EventPoller, urls: urls},
+        {HomeDisplay.Sources.Pollen, []},
         {Plug.Cowboy, scheme: :http, plug: HomeDisplay.Web.HttpRouter, options: [port: 4004]},
         HomeDisplay.Reporters.InfluxConnection
       ] ++ children(target()) ++ env_children(env())

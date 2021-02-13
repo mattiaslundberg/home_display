@@ -49,6 +49,12 @@ defmodule HomeDisplay.Scene.Main do
         translate: {0, 102},
         id: :kris
       )
+      |> text("",
+        font_size: @font_size - 4,
+        fill: :black,
+        translate: {60, 82},
+        id: :pollen
+      )
 
     graph =
       Enum.reduce(Sensors.sensors(), graph, fn {_s_id, s}, g ->
