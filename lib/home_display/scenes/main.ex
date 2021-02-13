@@ -38,7 +38,7 @@ defmodule HomeDisplay.Scene.Main do
       |> text("",
         font_size: @font_size - 4,
         fill: :black,
-        translate: {0, 60},
+        translate: {0, 58},
         id: :event_time
       )
       |> text("",
