@@ -4,6 +4,7 @@ defmodule HomeDisplay.Sources.Pollen do
   alias HomeDisplay.Scene.Main
 
   @wait_between 3_600_000
+  @url "https://pollenrapporten.se/4.549d670913d8d81d158347/12.549d670913d8d81d158351.portlet?state=rss&sv.contenttype=text/xml;charset=UTF-8"
 
   def start_link(_) do
     GenServer.start_link(__MODULE__, nil)
@@ -21,9 +22,7 @@ defmodule HomeDisplay.Sources.Pollen do
     Process.send_after(self(), :check, @wait_between)
 
     data =
-      Tesla.get(
-        "https://pollenrapporten.se/4.549d670913d8d81d158347/12.549d670913d8d81d158351.portlet?state=rss&sv.contenttype=text/xml;charset=UTF-8"
-      )
+      Tesla.get(@url)
       |> handle_response()
 
     Main.update_graph({:pollen, "#{data}"})
