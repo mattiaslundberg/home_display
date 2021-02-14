@@ -20,15 +20,16 @@ defmodule HomeDisplay.Scene.Main do
       |> text("",
         font_size: @font_size,
         fill: :black,
-        translate: {0, 30},
+        translate: {0, 15},
         id: :today
       )
       |> text("",
         font_size: @font_size,
         fill: :black,
-        translate: {45, 30},
+        translate: {45, 15},
         id: :day
       )
+      |> line({{0, 25}, {212, 25}}, fill: :black)
       |> text("",
         font_size: @font_size,
         fill: :black,
