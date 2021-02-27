@@ -25,7 +25,7 @@ defmodule HomeDisplay.Sources.Pollen do
       Tesla.get(@url)
       |> handle_response()
 
-    Main.update_graph({:pollen, "#{data}"})
+    Main.update_graph({:pollen, "Pollen: #{data}"})
     {:noreply, state}
   end
 
@@ -36,6 +36,7 @@ defmodule HomeDisplay.Sources.Pollen do
         |> Floki.find("item title")
         |> List.first()
         |> Floki.text()
+        |> parse_title()
 
       _ ->
         "Not parseable"
@@ -43,4 +44,12 @@ defmodule HomeDisplay.Sources.Pollen do
   end
 
   def handle_response(_), do: "No response"
+
+  def parse_title(string) do
+    string
+    |> String.split(" ")
+    |> Enum.filter(&String.contains?(&1, "pollen"))
+    |> Enum.map(&String.replace(&1, ["pollen", "."], ""))
+    |> Enum.join(", ")
+  end
 end
