@@ -107,11 +107,14 @@ defmodule HomeDisplay.Scene.Main do
     Graph.modify(graph, scene_id, &text(&1, "#", []))
   end
 
-  defp do_update(state = %{graph: graph, last_updates: last_updates}, target, content) do
+  defp do_update(state = %{graph: graph, last_updates: last_updates}, target, content)
+       when is_binary(content) do
     last_updates = Map.put(last_updates, target, DateTime.utc_now())
     graph = Graph.modify(graph, target, &text(&1, content, []))
     {:noreply, %{state | graph: graph, last_updates: last_updates}, push: graph}
   end
+
+  defp do_update(state, _, _), do: {:noreply, state}
 
   defp get_ref do
     {:ok, %{root_graph: {_, ref, _}}} = Scenic.ViewPort.info(:main_viewport)
