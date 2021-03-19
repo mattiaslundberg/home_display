@@ -61,6 +61,7 @@ defmodule HomeDisplay.Sources.Pollen do
 
   def parse_title(string) do
     string
+    |> String.downcase()
     |> String.replace([".", "-", ","], "")
     |> String.split(" ")
     |> Enum.filter(&pollen?/1)

@@ -22,6 +22,11 @@ defmodule HomeDisplay.Sources.PollenTest do
                "hassel, al"
     end
 
+    test "uppercase pollen" do
+      assert Pollen.parse_title("Hasselpollen låga halter. Al höga halter.") ==
+               "hassel, al"
+    end
+
     test "shortened pollen" do
       assert Pollen.parse_title(
                "Under torsdagen uppmättes måttliga halter av al- och hasselpollen."
