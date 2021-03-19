@@ -6,6 +6,20 @@ defmodule HomeDisplay.Sources.Pollen do
   @wait_between 3_600_000
   @url "https://pollenrapporten.se/4.549d670913d8d81d158347/12.549d670913d8d81d158351.portlet?state=rss&sv.contenttype=text/xml;charset=UTF-8"
 
+  @known_pollens [
+    "al",
+    "alm",
+    "ambrosia",
+    "björk",
+    "bok",
+    "ek",
+    "gräs",
+    "gråbo",
+    "hassel",
+    "sälg",
+    "vide"
+  ]
+
   def start_link(_) do
     GenServer.start_link(__MODULE__, nil)
   end
@@ -47,9 +61,18 @@ defmodule HomeDisplay.Sources.Pollen do
 
   def parse_title(string) do
     string
+    |> String.replace([".", "-", ","], "")
     |> String.split(" ")
-    |> Enum.filter(&String.contains?(&1, "pollen"))
-    |> Enum.map(&String.replace(&1, ["pollen", "."], ""))
+    |> Enum.filter(&pollen?/1)
+    |> Enum.map(&String.replace(&1, "pollen", ""))
     |> Enum.join(", ")
+  end
+
+  defp pollen?(word) do
+    cond do
+      String.contains?(word, "pollen") -> true
+      word in @known_pollens -> true
+      true -> false
+    end
   end
 end

@@ -21,5 +21,17 @@ defmodule HomeDisplay.Sources.PollenTest do
       assert Pollen.parse_title("hasselpollen låga halter. alpollen höga halter.") ==
                "hassel, al"
     end
+
+    test "shortened pollen" do
+      assert Pollen.parse_title(
+               "Under torsdagen uppmättes måttliga halter av al- och hasselpollen."
+             ) == "al, hassel"
+    end
+
+    test "multiple shortened pollens" do
+      assert Pollen.parse_title(
+               "Under torsdagen uppmättes måttliga halter av björk-, al- och hasselpollen."
+             ) == "björk, al, hassel"
+    end
   end
 end
